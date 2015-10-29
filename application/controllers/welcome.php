@@ -45,6 +45,10 @@ class Welcome extends My_Controller {
 		$this->ckeditor-> config['width'] = $width;
 		//configure ckfinder with ckeditor config
 		$this->ckfinder->SetupCKEditor($this->ckeditor,$path);
+		$this->ckeditor->addEventHandler('instanceReady', 'function (ev) {
+	    alert("Loaded: " + ev.editor.name);
+				$("#save").click(function(){alert(1); $(form).submit();});
+	  }');
 	}
 }
 
