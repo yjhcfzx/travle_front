@@ -34,21 +34,25 @@ class Welcome extends My_Controller {
 	}
 	
 	function editor($path,$width) {
-		//Loading Library For Ckeditor
-		$this->load->library('ckeditor');
-		$this->load->library('ckFinder');
-		//configure base path of ckeditor folder
-		$this->ckeditor->basePath = $this->config->item( 'base_theme_url') . 'js/ckeditor/';
-		//base_url().'js/ckeditor/';
-		$this->ckeditor-> config['toolbar'] = 'Full';
-		$this->ckeditor->config['language'] = 'en';
-		$this->ckeditor-> config['width'] = $width;
-		//configure ckfinder with ckeditor config
-		$this->ckfinder->SetupCKEditor($this->ckeditor,$path);
-		$this->ckeditor->addEventHandler('instanceReady', 'function (ev) {
-	    alert("Loaded: " + ev.editor.name);
-				$("#save").click(function(){alert(1); $(form).submit();});
-	  }');
+            if($_POST){
+                var_dump($_POST);die;
+            }
+            
+//		//Loading Library For Ckeditor
+//		$this->load->library('ckeditor');
+//		$this->load->library('ckFinder');
+//		//configure base path of ckeditor folder
+//		$this->ckeditor->basePath = $this->config->item( 'base_theme_url') . 'js/ckeditor/';
+//		//base_url().'js/ckeditor/';
+//		$this->ckeditor-> config['toolbar'] = 'Full';
+//		$this->ckeditor->config['language'] = 'en';
+//		$this->ckeditor-> config['width'] = $width;
+//		//configure ckfinder with ckeditor config
+//		$this->ckfinder->SetupCKEditor($this->ckeditor,$path);
+//		$this->ckeditor->addEventHandler('instanceReady', 'function (ev) {
+//	   // alert("Loaded: " + ev.editor.name);
+//				
+//	  }');
 	}
 }
 
