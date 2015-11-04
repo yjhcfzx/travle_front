@@ -1,4 +1,10 @@
 <?php
+$lang['title']			= "标题";
+$lang['travle_time']			= "旅行时间";
+$lang['create_post']			= "新建攻略";
+$lang['special_event']			= "特殊事件";
+$lang['choose_or_create']			= "选择或新建";
+
 $lang['required_error']			= "请输入";
 $lang['uploadimage']			= "上传图片";
 $lang['addImg']					= "添加图片";

@@ -35,7 +35,26 @@ class Welcome extends My_Controller {
 	
 	function editor($path,$width) {
             if($_POST){
-                var_dump($_POST);die;
+                var_dump($_POST);
+                $request_url = $this->data['router'] . '/list/format/json';
+                                var_dump($request_url);die;
+		$resp = my_api_request($request_url , $method = 'get', $param = array());
+		$resp = json_decode($resp,true);
+		if(isset($resp['error']))
+		{
+			$this->data['error'] = $resp['error'];
+		}
+	    else {
+	    	foreach($resp as $item){
+	    		if(isset($item['img']) && $item['img'] )
+	    		{
+	    			$imgs = explode($item['img'], ',');
+	    			$item['img'] = $imgs[0];
+	    		
+	    		}
+	    	}
+	    	$this->data['items'] = $resp;
+	    }
             }
             
 //		//Loading Library For Ckeditor

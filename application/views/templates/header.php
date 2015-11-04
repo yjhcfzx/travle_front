@@ -41,7 +41,7 @@
 			      <?php echo $text;?> <span class="caret"></span>
 			    </a>
 			    <ul class="dropdown-menu" role="menu">
-			      <li><a href='<?php echo $this->config->item( 'base_url');?>inquiry'>Inquiry Partials</a></li>
+			      <li><a href='<?php echo $this->config->item( 'base_url');?>post'>帖子</a></li>
 			      <li><a href='<?php echo $this->config->item( 'base_url');?>quote'>Quote Partials</a></li>
 			      <li><a href='<?php echo $this->config->item( 'base_url');?>awb'>AWB Partials</a></li>
 			  	  <li><a href='<?php echo $this->config->item( 'base_url');?>cost'>Cost Partials</a></li>
