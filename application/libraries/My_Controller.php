@@ -76,7 +76,8 @@ abstract class My_Controller extends CI_Controller
         		'user/login',
         		'user/register',
         		'welcome/index',
-                         'post/index'
+                         'post/index',
+                        'post/detail'
         		
         );
         if(!in_array($current_url , $exception_arr)){

@@ -28,7 +28,18 @@ class post extends My_Controller {
 		$this->load->view('pages/' .   $this->data ['router'] . '/list', $this->data);
 		$this->load->view('templates/footer', $this->data);
 	}
-	public function detail()
+        public function detail()
+        {if($_POST){
+            
+        var_dump($_POST['special_event']);}
+		$this->load->view('templates/header',
+				$this->data
+		);
+		
+		$this->load->view('pages/' .   $this->data ['router'] . '/detail', $this->data);
+		$this->load->view('templates/footer', $this->data);
+	}
+	public function detail1()
 	{
 		$request_url = 'store/detail/id/1/format/json';
 		$data = my_api_request($request_url , $method = 'get', $param = array());
