@@ -205,6 +205,7 @@ class user extends My_Controller {
 
 				$resp = my_api_request($request_url , $method = 'post', $request);
 				$resp = json_decode($resp, true);
+                      
 				if(!$resp || isset($resp['error']))
 				{
 					$this->data['error'] = $resp['error'];
@@ -212,7 +213,7 @@ class user extends My_Controller {
 				}
 				else
 				{
-					if($resp['type'] != 'front' && $resp['type'] != 'all'){
+					if(false && $resp['type'] != 'front' && $resp['type'] != 'all'){
 						$this->data['error'] = '没有合适权限';
 					}
 					else{

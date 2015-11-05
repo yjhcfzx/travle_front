@@ -83,8 +83,7 @@ abstract class My_Controller extends CI_Controller
         if(!in_array($current_url , $exception_arr)){
         	$this->session->set_userdata('current_url', uri_string());
         }
-        if(!$current_user 
-        		&& !in_array($current_url , $exception_arr)){
+        if(!$current_user  && !in_array($current_url , $exception_arr)){
         	redirect('../user/login', 'refresh');
         }
         else
