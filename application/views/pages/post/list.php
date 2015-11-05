@@ -1,4 +1,7 @@
 <div class="container-fluid">
+    <div id='popular'>
+        <h2><?php echo $this->lang->line('recent_hot'); ?></h2>
+    </div>
 	    <div class='product-list'>
 	    <?php 
 	    if(isset($error)){
