@@ -7,7 +7,7 @@
 	    else{
 	    foreach($items as $product):?>
 	       <div class="list-item panel panel-warning">
-	            <div class="panel-heading"><?php echo $product['name']?></div>
+	            <div class="panel-heading"><?php echo $product['title']?></div>
 	       		<div class="panel-body">
 				    <div class = 'row'>
 				    	<div class=" col-md-4 col-sm-4 col-xs-4">
@@ -22,7 +22,7 @@
 						    	  		</span>
 						    	  	</div>
 					    			<div class=" col-md-10 col-sm-9 col-xs-8 ">
-					    				<?php echo $product['price']?>
+					    				<?php echo $product['content']?>
 					    			</div>
 					    	  </div>
 					    	  <div class = 'row address'>

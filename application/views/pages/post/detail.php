@@ -9,10 +9,10 @@
        <div class="form-group">
                 <label for="dtp_input2" class="control-label"><?php echo $this->lang->line('travle_time'); ?></label>
                 <div class="input-group date form_date" id="travle_time" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" size="16" type="text" value="" >
+                    <input class="form-control" id="travle_time1" size="16" type="text" value="" >
 		    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
-			<input type="hidden" id="dtp_input2" value="" /><br/>	
+			<input type="hidden" id="travle_time2" value="" /><br/>	
             </div>
       <div class="form-group">
           <label class="control-label" for="agent"><?php echo $this->lang->line('special_event'); ?>  </label>
@@ -28,7 +28,7 @@
           </select>
 
       </div>
-   <textarea cols="80" id="editor1" name="editor1" rows="10">place holder 1</textarea>
+   <textarea cols="80" id="content" name="content" rows="10">place holder 1</textarea>
   <input type="submit" name="submit" value="Save" id="save" class="save" />
   </form>
   <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
@@ -43,6 +43,30 @@
 
 <script>
     $(document).ready(function(){
+        $('#save').click(function(event ){
+            event.preventDefault();
+            var request = {
+                'content': editor.getData(),
+                // 'special_event': $('#special_event').val(),
+                  'travle_time': $('#travle_time1').val(),
+                  'title': $('#title').val(),
+                
+            };
+            $.ajax({
+		async:false,
+		url: "../ajax",
+		type: "POST",
+		data: { 'url': '<?php echo $router;?>/detail/format/json' ,
+			'method': 'POST',
+                        'request':request
+                    },
+		dataType: "json"
+		}).done(function(data){
+			if(!data)
+				return false;
+			
+			});
+        });
        $('#special_event').chosen({
             create_option: true,
              persistent_create_option: true,
@@ -55,6 +79,7 @@
         language:  'ch',
         weekStart: 1,
         todayBtn:  1,
+        format: 'yyyy-mm-dd',
 		autoclose: 1,
 		todayHighlight: 1,
 		startView: 2,
@@ -69,7 +94,7 @@
 
 				// Replace the <textarea id="editor"> with an CKEditor
 				// instance, using default configurations.
-				CKEDITOR.replace( 'editor1',
+		var editor =		CKEDITOR.replace( 'content',
                 {
                     language : 'zh-cn',
                     filebrowserBrowseUrl :'js/ckeditor/filemanager/browser/default/browser.html?Connector=<?php echo $this->config->item( "ckeditor_connector_url");?>',

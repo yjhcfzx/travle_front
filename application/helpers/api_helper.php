@@ -33,6 +33,7 @@ if ( ! function_exists('my_api_request'))
 				
 				break;
     		case 'post':
+                        $param['uid'] = $user_id;
     			curl_setopt($ch, CURLOPT_POST, 1);
     			curl_setopt($ch, CURLOPT_POSTFIELDS,$param);
     			break;

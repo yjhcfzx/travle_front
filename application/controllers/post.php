@@ -18,9 +18,19 @@ class post extends My_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index()
-        {if($_POST){
+        {
             
-        var_dump($_POST['special_event']);}
+            $request_url = $this->data['router'] . '/list/format/json';
+            $resp = my_api_request($request_url , $method = 'get', $param = array());
+            $resp = json_decode($resp,true);
+            if(isset($resp['error']))
+		{
+			$this->data['error'] = $resp['error'];
+		}
+	    else {
+	    	
+	    	$this->data['items'] = $resp;
+	    }
 		$this->load->view('templates/header',
 				$this->data
 		);
@@ -29,9 +39,9 @@ class post extends My_Controller {
 		$this->load->view('templates/footer', $this->data);
 	}
         public function detail()
-        {if($_POST){
-            
-        var_dump($_POST['special_event']);}
+        {
+                if($_POST){
+                                var_dump($_POST);die;}
 		$this->load->view('templates/header',
 				$this->data
 		);
@@ -39,23 +49,7 @@ class post extends My_Controller {
 		$this->load->view('pages/' .   $this->data ['router'] . '/detail', $this->data);
 		$this->load->view('templates/footer', $this->data);
 	}
-	public function detail1()
-	{
-		$request_url = 'store/detail/id/1/format/json';
-		$data = my_api_request($request_url , $method = 'get', $param = array());
-		//$data = array();
-		//$data = my_api_request
-		$data = json_decode($data, true);
-		$this->load->view('templates/header', 
-				array(
-						'detail'=>$data
-						
-				)
-		);
-		$this->load->view('pages/product/detail', $data);
-		$this->load->view('templates/footer', $data);
-		
-	}
+	
 }
 
 /* End of file welcome.php */
