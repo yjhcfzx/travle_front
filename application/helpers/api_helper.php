@@ -45,7 +45,7 @@ if ( ! function_exists('my_api_request'))
 		$output = curl_exec ( $ch );
 		// 释放curl句柄
 		curl_close ( $ch );
-		//var_dump($output);die;
+		//var_dump($final_url,$output);die;
 		return $output;
        
     }   

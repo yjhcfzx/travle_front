@@ -217,7 +217,6 @@ function FileUpload( $resourceType, $currentFolder, $sCommand, $CKEcallback = ''
 			while ( true )
 			{
 				$sFilePath = $sServerDir . $sFileName ;
- 
 				if ( is_file( $sFilePath ) )
 				{
 					$iCounter++ ;
@@ -274,7 +273,7 @@ function FileUpload( $resourceType, $currentFolder, $sCommand, $CKEcallback = ''
  
 	$sFileUrl = CombinePaths( GetResourceTypePath( $resourceType, $sCommand ) , $currentFolder ) ;
 	$sFileUrl = CombinePaths( $sFileUrl, $sFileName ) ;
- 
+     
 	if($CKEcallback == '')
 	{
 		SendUploadResults( $sErrorNumber, $sFileUrl, $sFileName ) ;

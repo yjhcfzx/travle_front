@@ -43,7 +43,14 @@ $sCommand = 'QuickUpload' ;
 // The file type (from the QueryString, by default 'File').
 $sType = isset( $_GET['Type'] ) ? $_GET['Type'] : 'File' ;
 
-$sCurrentFolder	= "/" ;
+$cisess_cookie = $_COOKIE['ci_session'];
+$cisess_cookie = stripslashes($cisess_cookie);
+$cisess_cookie = unserialize($cisess_cookie);
+if(isset($cisess_cookie['user']) && isset($cisess_cookie['user']['id']))
+{
+    $user_id = $cisess_cookie['user']['id'];
+}
+$sCurrentFolder	=  $user_id ? 'uid_' . $user_id . '/' :  "/" ;
 
 // Is enabled the upload?
 if ( ! IsAllowedCommand( $sCommand ) )
@@ -56,7 +63,6 @@ if ( !IsAllowedType( $sType ) )
 
 // Get the CKEditor Callback
 $CKEcallback = $_GET['CKEditorFuncNum'];
- 
 //pass it on to file upload function
 FileUpload( $sType, $sCurrentFolder, $sCommand, $CKEcallback );
 

@@ -77,7 +77,11 @@ function ServerMapFolder( $resourceType, $folderPath, $sCommand )
 		SendError( 1, "Error creating folder \"{$sResourceTypePath}\" ({$sErrorMsg})" ) ;
 
 	// Return the resource type directory combined with the required path.
-	return CombinePaths( $sResourceTypePath , $folderPath ) ;
+       $final_folder =  CombinePaths( $sResourceTypePath , $folderPath ) ;
+       $sErrorMsg = CreateServerFolder( $final_folder ) ;
+	if ( $sErrorMsg != '' )
+		SendError( 1, "Error creating folder \"{$final_folder}\" ({$sErrorMsg})" ) ;
+	return $final_folder ;
 }
 
 function GetParentFolder( $folderPath )

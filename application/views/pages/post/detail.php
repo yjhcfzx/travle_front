@@ -6,6 +6,18 @@
           <input class="form-control required"  name= "title" id="title" />
 
       </div>
+      <div class="form-group">
+          <label class="control-label" for="destination"><?php echo $this->lang->line('destination'); ?>  </label>
+          <select  multiple="multiple" data-placeholder="<?php echo $this->lang->line('choose_or_create'); ?>..."  class="form-control chzn-select required"  name= "destination[]" id="destination" >
+            <option value=""></option>
+            <?php foreach($destination as $item){
+                echo "<option value='{$item['id']}'>{$item['name']}</option>";
+            }?>
+           
+        
+          </select>
+
+      </div>
        <div class="form-group">
                 <label for="dtp_input2" class="control-label"><?php echo $this->lang->line('travle_time'); ?></label>
                 <div class="input-group date form_date" id="travle_time" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
@@ -16,7 +28,7 @@
             </div>
       <div class="form-group">
           <label class="control-label" for="agent"><?php echo $this->lang->line('special_event'); ?>  </label>
-          <select  multiple="multiple" data-placeholder="<?php echo $this->lang->line('choose_or_create'); ?>..."  class="form-control required"  name= "special_event[]" id="special_event" >
+          <select  multiple="multiple" data-placeholder="<?php echo $this->lang->line('choose_or_create'); ?>..."  class="form-control required chzn-select"  name= "special_event[]" id="special_event" >
             <option value=""></option>
             <option value="United States">United States</option>
             <option value="United Kingdom">United Kingdom</option>
@@ -47,11 +59,13 @@
             event.preventDefault();
             var request = {
                 'content': editor.getData(),
-                // 'special_event': $('#special_event').val(),
+                 'special_event': $('#special_event').val() ? $('#special_event').val().join(',') : '',
+                 'destination': $('#destination').val() ? $('#destination').val().join(',') : '',
                   'travle_time': $('#travle_time1').val(),
                   'title': $('#title').val(),
                 
             };
+            
             $.ajax({
 		async:false,
 		url: "../ajax",
@@ -67,7 +81,7 @@
 			
 			});
         });
-       $('#special_event').chosen({
+       $('.chzn-select').chosen({
             create_option: true,
              persistent_create_option: true,
     
@@ -97,9 +111,9 @@
 		var editor =		CKEDITOR.replace( 'content',
                 {
                     language : 'zh-cn',
-                    filebrowserBrowseUrl :'js/ckeditor/filemanager/browser/default/browser.html?Connector=<?php echo $this->config->item( "ckeditor_connector_url");?>',
-                    filebrowserImageBrowseUrl : 'js/ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=<?php echo $this->config->item( "ckeditor_connector_url");?>',
-                    filebrowserFlashBrowseUrl :'js/ckeditor/filemanager/browser/default/browser.html?Type=Flash&Connector=<?php echo $this->config->item( "ckeditor_connector_url");?>',
+                    filebrowserBrowseUrl :'<?php echo $this->config->item('base_theme_url');?>js/ckeditor/filemanager/browser/default/browser.html?Connector=<?php echo $this->config->item( "ckeditor_connector_url");?>',
+                    filebrowserImageBrowseUrl : '<?php echo $this->config->item('base_theme_url');?>js/ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=<?php echo $this->config->item( "ckeditor_connector_url");?>',
+                    filebrowserFlashBrowseUrl :'<?php echo $this->config->item('base_theme_url');?>js/ckeditor/filemanager/browser/default/browser.html?Type=Flash&Connector=<?php echo $this->config->item( "ckeditor_connector_url");?>',
 					filebrowserUploadUrl  :'<?php echo $this->config->item( "ckeditor_upload_url");?>?Type=File',
 					filebrowserImageUploadUrl : '<?php echo $this->config->item( "ckeditor_upload_url");?>?Type=Image',
 					filebrowserFlashUploadUrl : '<?php echo $this->config->item( "ckeditor_upload_url");?>?Type=Flash'

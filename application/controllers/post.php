@@ -40,8 +40,10 @@ class post extends My_Controller {
 	}
         public function detail()
         {
-                if($_POST){
-                                var_dump($_POST);die;}
+            $destination_url = 'common/destination/format/json';
+            $destination = my_api_request($destination_url , $method = 'get', $param = array());
+            $destination = json_decode($destination,true);
+             $this->data['destination'] =    $destination;
 		$this->load->view('templates/header',
 				$this->data
 		);

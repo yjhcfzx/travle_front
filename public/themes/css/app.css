@@ -102,3 +102,6 @@ padding: 0 !important;
 .link-item{margin-bottom:10px;}
 .btn.full-width{width:100%;}
 .list-item.header{font-weight:bold;}
+.thumbnail-img{
+    max-width: 80%;
+}
