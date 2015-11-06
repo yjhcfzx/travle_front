@@ -43,13 +43,19 @@ class post extends My_Controller {
             $destination_url = 'common/destination/format/json';
             $destination = my_api_request($destination_url , $method = 'get', $param = array());
             $destination = json_decode($destination,true);
-             $this->data['destination'] =    $destination;
-		$this->load->view('templates/header',
+            $this->data['destination'] =    $destination;
+            
+            $event_url = 'common/event/format/json';
+            $event = my_api_request($event_url , $method = 'get', $param = array());
+            $event = json_decode($event,true);
+            $this->data['event'] =    $event;
+            
+	   $this->load->view('templates/header',
 				$this->data
 		);
 		
-		$this->load->view('pages/' .   $this->data ['router'] . '/detail', $this->data);
-		$this->load->view('templates/footer', $this->data);
+            $this->load->view('pages/' .   $this->data ['router'] . '/detail', $this->data);
+            $this->load->view('templates/footer', $this->data);
 	}
 	
 }

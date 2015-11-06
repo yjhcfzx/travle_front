@@ -10,9 +10,9 @@
           <label class="control-label" for="destination"><?php echo $this->lang->line('destination'); ?>  </label>
           <select  multiple="multiple" data-placeholder="<?php echo $this->lang->line('choose_or_create'); ?>..."  class="form-control chzn-select required"  name= "destination[]" id="destination" >
             <option value=""></option>
-            <?php foreach($destination as $item){
+            <?php if(!isset($destination['error'])){ foreach($destination as $item){
                 echo "<option value='{$item['id']}'>{$item['name']}</option>";
-            }?>
+            }}?>
            
         
           </select>
@@ -30,11 +30,9 @@
           <label class="control-label" for="agent"><?php echo $this->lang->line('special_event'); ?>  </label>
           <select  multiple="multiple" data-placeholder="<?php echo $this->lang->line('choose_or_create'); ?>..."  class="form-control required chzn-select"  name= "special_event[]" id="special_event" >
             <option value=""></option>
-            <option value="United States">United States</option>
-            <option value="United Kingdom">United Kingdom</option>
-            <option value="Afghanistan">Afghanistan</option>
-            <option value="Aland Islands">Aland Islands</option>
-            <option value="Albania">Albania</option>
+            <?php if(!isset($event['error'])){     foreach($event as $item){
+                echo "<option value='{$item['id']}'>{$item['name']}</option>";
+            }}?>
            
         
           </select>
