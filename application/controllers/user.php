@@ -282,13 +282,12 @@ class user extends My_Controller {
 					'password'=>$this->input->post('password')
 					//''=>$this->input->post(''),
 			);
-				
-	
+                      
 			//call login api
 			$this->load->helper('api');
 	
 			$request_url =  $this->data['router'] ."/" .  $this->data['action'] . "/format/json";
-	
+                      
 			$resp = my_api_request($request_url , $method = 'post', $request);
 			$resp = json_decode($resp, true);
 			if(!$resp || isset($resp['error']))
@@ -297,10 +296,9 @@ class user extends My_Controller {
 					
 			}
 			else{
-				var_dump($resp);die;
 				$this->data['resp'] = $resp;
 				$this->session->set_userdata('user', $resp);
-				redirect('../welcome', 'refresh');
+				//redirect('../welcome', 'refresh');
 					
 			}
 	

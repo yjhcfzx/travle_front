@@ -1,6 +1,10 @@
 <div class='center'>
 <h2><?php echo $title;?><span style='font-size:0.6em;padding-left:1%;'><a href='../user/login'><?php echo $this->lang->line('login'); ?> >></a></<span></h2>
-
+<?php $user = $this->session->userdata('user');if($user):?>
+            <h3><?php echo $this->lang->line('register_success'); ?></h3>
+            <div><a href="<?php echo $this->config->item( 'base_url');?>resource/index/<?php echo $user['id']; ?>"><?php echo $this->lang->line('fill_resource_p'); ?></a></div>
+             <div><a href="<?php echo $this->config->item( 'base_url');?>"><?php echo $this->lang->line('return_home'); ?></a></div>
+<?php else: ?>
 <?php echo validation_errors(); ?>
 <?php if(isset($error)) var_dump($error);?>
 <?php 
@@ -118,3 +122,4 @@ var validator_messages = {
        
            });
         </script>
+        <?php endif;?>
