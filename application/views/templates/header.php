@@ -35,7 +35,7 @@
             $href = isset( $nav_item['href']) ? $nav_item['href'] : $key;
             $href = $this->config->item('base_url') . $href;
            ?>
-           <?php if($key == 'template'):?>
+           <?php if($key == 'post'):?>
            		<li role="presentation" class='dropdown nav-item <?php if($router == $key) echo " active";?>' id='nav-item-<?php echo $key;?>'>
 			    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
 			      <?php echo $text;?> <span class="caret"></span>
