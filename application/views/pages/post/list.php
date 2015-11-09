@@ -1,3 +1,10 @@
+<style>
+    .list-item:hover{
+        cursor:pointer;
+        cursor:hand;
+        
+    }
+</style>
 <div class="container-fluid">
     <div id='popular'>
         <h2><?php echo $this->lang->line('recent_hot'); ?></h2>
@@ -10,11 +17,12 @@
 	    else{
 	    foreach($items as $product): 
                 $imgOfText = NULL;
+                if($product['content']){
                 $doc = new DOMDocument();
                 $doc->loadHTML($product['content']);
                 $img = $doc->getElementsByTagName('img')->item(0);
-                if($img){$imgOfText = $img->getAttribute('src');}?>
-	       <div class="list-item panel panel-warning">
+                if($img){$imgOfText = $img->getAttribute('src');}}?>
+	       <div class="list-item panel panel-warning" onclick='javascript:window.location.href = "<?php echo  $this->config->item('base_url');?>post/detail/<?php echo$product['id']; ?>";'>
 	            <div class="panel-heading"><?php echo $product['title']?></div>
 	       		<div class="panel-body">
 				    <div class = 'row'>
@@ -63,3 +71,10 @@
 	       <?php endforeach;}?>
 	    </div>
     </div>
+<script>
+$('.list-item').hover(function(){
+    $(this).removeClass('panel-warning').addClass('panel-primary');
+}, function(){
+      $(this).removeClass('panel-primary').addClass('panel-warning');
+});
+    </script>

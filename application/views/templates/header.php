@@ -42,7 +42,7 @@
 			    </a>
 			    <ul class="dropdown-menu" role="menu">
                               <li><a href='<?php echo $this->config->item( 'base_url');?>post'><?php echo $this->lang->line('post'); ?></a></li>
-			      <li><a href='<?php echo $this->config->item( 'base_url');?>post/detail'><?php echo $this->lang->line('create_post'); ?></a></li>
+			      <li><a href='<?php echo $this->config->item( 'base_url');?>post/create'><?php echo $this->lang->line('create_post'); ?></a></li>
 			      
 			    </ul>
 			  </li>

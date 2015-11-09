@@ -38,7 +38,7 @@ class post extends My_Controller {
 		$this->load->view('pages/' .   $this->data ['router'] . '/list', $this->data);
 		$this->load->view('templates/footer', $this->data);
 	}
-        public function detail()
+        public function create()
         {
             $destination_url = 'common/destination/format/json';
             $destination = my_api_request($destination_url , $method = 'get', $param = array());
@@ -54,8 +54,30 @@ class post extends My_Controller {
 				$this->data
 		);
 		
-            $this->load->view('pages/' .   $this->data ['router'] . '/detail', $this->data);
+            $this->load->view('pages/' .   $this->data ['router'] . '/create', $this->data);
             $this->load->view('templates/footer', $this->data);
+	}
+        
+        public function detail($id)
+        {
+            $request_url = $this->data['router'] . '/detail/format/json';
+                        var_dump($id);
+            $resp = my_api_request($request_url , $method = 'get', $param = array('id'=>$id));
+            $resp = json_decode($resp,true);
+            if(isset($resp['error']))
+		{
+			$this->data['error'] = $resp['error'];
+		}
+	    else {
+	    	
+	    	$this->data['items'] = $resp;
+	    }
+		$this->load->view('templates/header',
+				$this->data
+		);
+		
+		$this->load->view('pages/' .   $this->data ['router'] . '/detail', $this->data);
+		$this->load->view('templates/footer', $this->data);
 	}
 	
 }

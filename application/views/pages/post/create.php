@@ -1,21 +1,47 @@
 <div id="container">
-    <h1><?php  echo $items['title']; ?></h1>
-     <h2><?php  if(isset($items['destination'])){
-         foreach($items['destination'] as $dest){
-             echo $dest['name'] , ' ';
-         }
-     } ?></h2>
-    
-    <h2><?php  if(isset($items['special_event'])){
-         foreach($items['special_event'] as $event){
-             echo $event['name'] , ' ';
-         }
-     } ?></h2>
-     <h3><?php  echo $items['author'] , ' ' , $items['created_at']  ; ?></h3>
-     <pre>
-         <?php  echo $items['content']; ?>
-     </pre>
+  <h1><?php echo $this->lang->line('create_post'); ?></h1>
+  <form method="post">
+      <div class="form-group">
+          <label class="control-label " for="agent"><?php echo $this->lang->line('title'); ?>  </label>
+          <input class="form-control required"  name= "title" id="title" />
 
+      </div>
+      <div class="form-group">
+          <label class="control-label" for="destination"><?php echo $this->lang->line('destination'); ?>  </label>
+          <select  multiple="multiple" data-placeholder="<?php echo $this->lang->line('choose_or_create'); ?>..."  class="form-control chzn-select required"  name= "destination[]" id="destination" >
+            <option value=""></option>
+            <?php if(!isset($destination['error'])){ foreach($destination as $item){
+                echo "<option value='{$item['id']}'>{$item['name']}</option>";
+            }}?>
+           
+        
+          </select>
+
+      </div>
+       <div class="form-group">
+                <label for="dtp_input2" class="control-label"><?php echo $this->lang->line('travle_time'); ?></label>
+                <div class="input-group date form_date" id="travle_time" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" id="travle_time1" size="16" type="text" value="" >
+		    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+			<input type="hidden" id="travle_time2" value="" /><br/>	
+            </div>
+      <div class="form-group">
+          <label class="control-label" for="agent"><?php echo $this->lang->line('special_event'); ?>  </label>
+          <select  multiple="multiple" data-placeholder="<?php echo $this->lang->line('choose_or_create'); ?>..."  class="form-control required chzn-select"  name= "special_event[]" id="special_event" >
+            <option value=""></option>
+            <?php if(!isset($event['error'])){     foreach($event as $item){
+                echo "<option value='{$item['id']}'>{$item['name']}</option>";
+            }}?>
+           
+        
+          </select>
+
+      </div>
+   <textarea cols="80" id="content" name="content" rows="10">place holder 1</textarea>
+  <input type="submit" name="submit" value="Save" id="save" class="save" />
+  </form>
+  <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 </div>
 
 <link rel="stylesheet" href="<?php echo $this->config->item( 'base_theme_url');?>css/chosen.css">
