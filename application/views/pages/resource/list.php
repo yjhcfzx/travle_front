@@ -9,6 +9,7 @@
     <div id='popular'>
         <h2><?php echo $this->lang->line('resource'), $this->lang->line('list') ; ?></h2>
     </div>
+    <?php include __DIR__ . '/../../templates/user_nav.php'?>
 	    <div class='product-list'>
 	    <?php 
 	    if(isset($error)){

@@ -18,7 +18,7 @@ class user extends My_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	
-	protected function uploadImg($input_name, &$error){
+        protected function uploadImg($input_name, &$error){
 		if ( ! $this->upload->do_upload($input_name))
 		{
 			$error = $this->upload->display_errors();
@@ -37,6 +37,36 @@ class user extends My_Controller {
 	public function index()
 	{
 		$this->load->view('welcome_message');
+	}
+        public function detail($uid = NULL)
+	{
+              $is_self = FALSE;
+                           
+              if(isset($this->data['user']) && $this->data['user']['id'] == $uid){
+                  $user = $this->data['user'];
+                  $is_self = TRUE;
+              }
+              else{
+                   $request_url = $this->data['router'] . '/detail/format/json';
+                    $resp = my_api_request($request_url , $method = 'get', $param = array('id'=>$uid));
+                    $user = json_decode($resp,true);
+                     if(isset($resp['error']))
+                    {
+                            $this->data['error'] = $resp['error'];
+                    }
+                    
+              }
+        
+	    	
+	    	$this->data['items'] = $user;
+                $this->data['is_self'] = $is_self;
+            
+		$this->load->view('templates/header',
+				$this->data
+		);
+		
+		$this->load->view('pages/' .   $this->data ['router'] . '/detail', $this->data);
+		$this->load->view('templates/footer', $this->data);
 	}
 	public function create()
 	{

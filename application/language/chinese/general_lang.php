@@ -8,6 +8,7 @@ $lang['post']			= "攻略";
 $lang['resource']			= "资源";
 $lang['list']			= "列表";
 $lang['my_profile']			= "我的游局";
+$lang['profile']			= "个人信息";
 $lang['create_post']			= "新建攻略";
 $lang['special_event']			= "特殊事件";
 $lang['choose_or_create']			= "选择或新建";

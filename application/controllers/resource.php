@@ -19,6 +19,11 @@ class resource extends My_Controller {
 	 */
 	public function index ($uid = NULL)
         {
+             $is_self = FALSE;
+                           
+             if(isset($this->data['user']) && $this->data['user']['id'] == $uid){
+                  $is_self = TRUE;
+              }
             $destination_url = 'common/destination/format/json';
             $destination = my_api_request($destination_url , $method = 'get', $param = array());
             $destination = json_decode($destination,true);
@@ -37,6 +42,7 @@ class resource extends My_Controller {
 	    	
 	    	$this->data['items'] = $resp;
 	    }
+            $this->data['is_self'] = $is_self;
 		$this->load->view('templates/header',
 				$this->data
 		);

@@ -23,7 +23,7 @@
 <body>
  
 <script>window._bd_share_config=
-            {"common":{"bdSnsKey":{"weixin":"wx575a2ebf98313e28","tsina":"abc","sqq":"edf"},
+            {"common":{"bdSnsKey":{"weixin":"","tsina":"","sqq":""},
             "bdText":"","bdMini":"2",
             //"bdMiniList":false,
             "bdPic":"",

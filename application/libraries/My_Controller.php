@@ -24,6 +24,16 @@ abstract class My_Controller extends CI_Controller
      *
      * @var string|null
      */
+    protected $subnav = array(
+        'user'=>array(
+
+		"profile" => array(
+			'href'=>'user/detail'	
+		),
+		"resource" => array(
+				'href'=>'resource/index'	
+		),)
+        );
     protected $rest_format          = null;
 
     protected $data = array();
@@ -68,7 +78,7 @@ abstract class My_Controller extends CI_Controller
         
         $this->data['router'] = $router;
         $this->data['action'] = $action;
-        
+        $this->data['subnav'] = $this->subnav;
         $current_url = $router . '/' . $action;
         //$this->session->unset_userdata('user');
         $current_user = $this->session->userdata('user');
