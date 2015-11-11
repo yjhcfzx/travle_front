@@ -21,6 +21,20 @@
       <script src="<?php echo $this->config->item('base_theme_url');?>js/app.js"></script>
 </head>
 <body>
+ 
+<script>window._bd_share_config=
+            {"common":{"bdSnsKey":{"weixin":"wx575a2ebf98313e28","tsina":"abc","sqq":"edf"},
+            "bdText":"","bdMini":"2",
+            //"bdMiniList":false,
+            "bdPic":"",
+            "bdStyle":"0",
+            "bdSize":"16",
+        "bdMiniList":["weixin","qzone","sqq","copy"]},
+        "slide":{"type":"slide","bdImg":"0","bdPos":"right","bdTop":"100"},
+        "image":{"viewList":["qzone","tsina","tqq","weixin"],
+            "viewText":"分享到：","viewSize":"16"},
+        "selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","weixin"]}};
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 	<!-- Fixed navbar -->
     <div role="navigation" class="navbar my-navbar navbar-fixed-top">
       <div class="container">
@@ -70,6 +84,7 @@
 				    </a>
 				    <ul class="dropdown-menu dropdown-ul" role="menu">
 				     	  <li role="presentation" class="create"><a href="<?php echo $this->config->item('base_url');?>user/logout/"><?php echo $this->lang->line('logout'); ?></a></li>
+                                          <li role="presentation" class="create"><a href="<?php echo $this->config->item('base_url');?>user/detail/<?php echo $user['id'];?>"><?php echo $this->lang->line('my_profile'); ?></a></li>
 				    </ul>
 				    <?php else :?>
 				    <div class='account-operations'>

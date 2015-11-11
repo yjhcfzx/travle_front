@@ -7,6 +7,7 @@ $lang['travle_time']			= "旅行时间";
 $lang['post']			= "攻略";
 $lang['resource']			= "资源";
 $lang['list']			= "列表";
+$lang['my_profile']			= "我的游局";
 $lang['create_post']			= "新建攻略";
 $lang['special_event']			= "特殊事件";
 $lang['choose_or_create']			= "选择或新建";
