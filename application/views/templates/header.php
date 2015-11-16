@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>前端应用</title>
-<link rel="icon" href="<?php echo $this->config->item( 'base_theme_url');?>images/fav1.ico" />
+<title>我要浪</title>
+<link rel="icon"   type="image/png"    href="<?php echo $this->config->item( 'base_theme_url');?>images/favicon.ico">
  <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="<?php echo $this->config->item( 'base_theme_url');?>css/bootstrap.css">
 
@@ -29,7 +29,8 @@
             "bdPic":"",
             "bdStyle":"0",
             "bdSize":"16",
-        "bdMiniList":["weixin","qzone","sqq","copy"]},
+        "bdMiniList":["weixin","qzone","sqq","copy"]
+    },
         "slide":{"type":"slide","bdImg":"0","bdPos":"right","bdTop":"100"},
         "image":{"viewList":["qzone","tsina","tqq","weixin"],
             "viewText":"分享到：","viewSize":"16"},
@@ -66,9 +67,9 @@
            		</li>
            <?php endif;?>
            <?php endforeach;?>
-           		<li class='nav-item' id='nav-item-back'>
+<!--           		<li class='nav-item' id='nav-item-back'>
            			<a href="<?php echo $this->config->item( 'base_url') , '../../soa_dash/' ;?>">后台</a>
-           		</li>
+           		</li>-->
            		<li role="presentation" class="dropdown operation pull-right" >
            		<?php if(isset($user) && $user) :?>
 				    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
