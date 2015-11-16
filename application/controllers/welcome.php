@@ -32,6 +32,17 @@ class Welcome extends My_Controller {
 		$this->load->view('welcome_message');
 		$this->load->view('templates/footer', $this->data);
 	}
+        
+        public function redirect()
+	{	
+		
+		$this->load->view('templates/header',
+				$this->data
+		);
+		
+		$this->load->view('pages/welcome/redirect');
+		$this->load->view('templates/footer', $this->data);
+	}
 	
 	function editor($path,$width) {
             if($_POST){

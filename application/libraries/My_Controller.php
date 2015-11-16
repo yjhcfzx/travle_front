@@ -86,15 +86,17 @@ abstract class My_Controller extends CI_Controller
         		'user/login',
         		'user/register',
         		'welcome/index',
-//                         'post/index',
-//                        'post/detail'
+                        'welcome/redirect',
+                        'post/index',
+                        'post/detail'
         		
         );
         if(!in_array($current_url , $exception_arr)){
         	$this->session->set_userdata('current_url', uri_string());
         }
         if(!$current_user  && !in_array($current_url , $exception_arr)){
-        	redirect('../user/login', 'refresh');
+        	//redirect('../user/login', 'refresh');
+            redirect('../welcome/redirect', 'refresh');
         }
         else
         {

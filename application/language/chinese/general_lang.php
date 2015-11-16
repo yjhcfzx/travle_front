@@ -16,6 +16,7 @@ $lang['recent_hot']			= "近期热门";
 $lang['destination']			= "目的地";
 $lang['name']			= "姓名";
 $lang['email']			= "电子邮箱";
+$lang['you_need_login']			= "您需要登录完成操作";
 $lang['price']			= "价格";
 $lang['phone']			= "电话";
 $lang['password']			= "密码";
