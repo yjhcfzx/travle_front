@@ -15,6 +15,16 @@
      <pre>
          <?php  echo $items['content']; ?>
      </pre>
+     <div id="comment-section">
+          <form method="post">
+            <div class="form-group">
+                <label  for="comment"><?php echo $this->lang->line('post_comment'); ?>  </label>
+                 <textarea cols="80" id="comment" name="comment" rows="10" class='form-control'>place holder 1</textarea>
+
+            </div>
+            <input type="submit" name="submit" value="<?php echo $this->lang->line('submit'); ?>" id="save" class="save" />
+          </form>
+     </div>
 
 </div>
 

@@ -17,7 +17,7 @@ $lang['destination']			= "目的地";
 $lang['name']			= "姓名";
 $lang['email']			= "电子邮箱";
 $lang['you_need_login']			= "您需要登录完成操作";
-$lang['price']			= "价格";
+$lang['username']			= "用户名";
 $lang['phone']			= "电话";
 $lang['password']			= "密码";
 $lang['fill_resource_p']			= "完善旅游资源 让需要帮助的驴友找到你";
@@ -27,7 +27,7 @@ $lang['required_error']			= "请输入";
 $lang['uploadimage']			= "上传图片";
 $lang['addImg']					= "添加图片";
 $lang['imgsizelimit']			= "图片大小不超过1024*768";
-$lang['addproduct']			= "添加产品";
+$lang['post_comment']			= "发表评论";
 
 $lang['displayinfo']			= "展示信息";
 $lang['priority']			= "优先级";

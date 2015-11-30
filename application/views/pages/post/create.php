@@ -39,7 +39,7 @@
 
       </div>
    <textarea cols="80" id="content" name="content" rows="10">place holder 1</textarea>
-  <input type="submit" name="submit" value="Save" id="save" class="save" />
+  <input type="submit" name="submit" value="<?php echo $this->lang->line('submit'); ?>" id="save" class="save" />
   </form>
   <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 </div>
