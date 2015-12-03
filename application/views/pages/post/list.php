@@ -14,6 +14,9 @@
 	    if(isset($error)){
 	    	//var_dump($error);
 	    }
+            else if(!$items){
+              echo 'no items';  
+            }
 	    else{
 	    foreach($items as $product): 
                 $imgOfText = NULL;

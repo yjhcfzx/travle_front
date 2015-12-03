@@ -15,6 +15,21 @@
      <pre>
          <?php  echo $items['content']; ?>
      </pre>
+     
+     <h3><?php echo $this->lang->line('comment'); ?></h3>
+     <?php if($comments): foreach($comments as $comment):?>
+    <div class="list-item panel panel-warning" onclick='javascript:window.location.href = "<?php echo  $this->config->item('base_url');?>post/detail/<?php echo$product['id']; ?>";'>
+	            <div class="panel-heading"><?php echo $comment['author'];?> <?php echo $comment['created_at'];?></div>
+	       		<div class="panel-body">
+				    <div class = 'row'>
+				    	<div class=" col-md-12 col-sm-12 col-xs-12 list-main">
+					    	<?php echo isset($comment['content']) ? strip_tags($comment['content']) : ''; ?> 	 
+				    	</div>
+				    </div>
+				</div>
+ 		   		<div class="panel-footer"><?php echo $this->lang->line('reply'); ?></div>
+	       </div>
+     <?php  endforeach; endif;?>
      <div id="comment-section">
           <form method="post">
             <div class="form-group">
@@ -37,32 +52,7 @@
 
 <script>
     $(document).ready(function(){
-        $('#save').click(function(event ){
-            event.preventDefault();
-            var request = {
-                'content': editor.getData(),
-                 'special_event': $('#special_event').val() ? $('#special_event').val().join(',') : '',
-                 'destination': $('#destination').val() ? $('#destination').val().join(',') : '',
-                  'travle_time': $('#travle_time1').val(),
-                  'title': $('#title').val(),
-                
-            };
-            
-            $.ajax({
-		async:false,
-		url: "../ajax",
-		type: "POST",
-		data: { 'url': '<?php echo $router;?>/detail/format/json' ,
-			'method': 'POST',
-                        'request':request
-                    },
-		dataType: "json"
-		}).done(function(data){
-			if(!data)
-				return false;
-			
-			});
-        });
+      
        $('.chzn-select').chosen({
             create_option: true,
              persistent_create_option: true,

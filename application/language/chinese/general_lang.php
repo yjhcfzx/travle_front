@@ -29,8 +29,8 @@ $lang['addImg']					= "添加图片";
 $lang['imgsizelimit']			= "图片大小不超过1024*768";
 $lang['post_comment']			= "发表评论";
 
-$lang['displayinfo']			= "展示信息";
-$lang['priority']			= "优先级";
+$lang['comment']			= "回复";
+$lang['reply']			= "回复";
 $lang['submit']			= "提交";
 $lang['uploadimage']			= "上传图片";
 $lang['createinquiry']			= "新建inquiry";

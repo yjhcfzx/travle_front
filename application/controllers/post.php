@@ -60,8 +60,13 @@ class post extends My_Controller {
         
         public function detail($id)
         {
+            //create comment
+            if(isset($_POST['submit']) && $_POST['submit']){
+                $comment_content = $_POST['comment'];
+                $request_url =  'comment/detail/format/json';
+                $resp = my_api_request($request_url , $method = 'post', $param = array('content'=>$comment_content,'post_id'=>$id));
+            }
             $request_url = $this->data['router'] . '/detail/format/json';
-                        var_dump($id);
             $resp = my_api_request($request_url , $method = 'get', $param = array('id'=>$id));
             $resp = json_decode($resp,true);
             if(isset($resp['error']))
@@ -71,7 +76,13 @@ class post extends My_Controller {
 	    else {
 	    	
 	    	$this->data['items'] = $resp;
+                $request_url =  'comment/list/format/json';
+                $resp = my_api_request($request_url , $method = 'get', $param = array('post_id'=>$id));
+                $resp = json_decode($resp,true);
+                $this->data['comments'] = $resp;
 	    }
+            
+              
 		$this->load->view('templates/header',
 				$this->data
 		);
