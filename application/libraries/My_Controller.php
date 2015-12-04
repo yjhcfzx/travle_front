@@ -69,7 +69,7 @@ abstract class My_Controller extends CI_Controller
 //         $logger->warn("I'm not feeling so good...");
         
         $this->load->helper('api');
-        $this->load->helper('form');
+        $this->load->helper('my_form');
         $this->lang->load('general', 'chinese');
         $this->load->library('session');
         $this->load->helper('url');
