@@ -1,45 +1,48 @@
 <div id="container">
   <h1><?php echo $this->lang->line('create_post'); ?></h1>
   <form method="post">
-      <div class="form-group">
-          <label class="control-label " for="agent"><?php echo $this->lang->line('title'); ?>  </label>
-          <input class="form-control required"  name= "title" id="title" />
-
-      </div>
-      <div class="form-group">
-          <label class="control-label" for="destination"><?php echo $this->lang->line('destination'); ?>  </label>
-          <select  multiple="multiple" data-placeholder="<?php echo $this->lang->line('choose_or_create'); ?>..."  class="form-control chzn-select required"  name= "destination[]" id="destination" >
-            <option value=""></option>
-            <?php if(!isset($destination['error'])){ foreach($destination as $item){
-                echo "<option value='{$item['id']}'>{$item['name']}</option>";
-            }}?>
-           
-        
-          </select>
-
-      </div>
-       <div class="form-group">
+      <?php echo my_generate_controller(array('name'=>'title','label'=>'title','type'=>'text'));?>
+      <?php 
+        $options = array();
+        if(!isset($destination['error'])){ foreach($destination as $item){
+            $options[$item['id']] = $item['name'];
+            }}
+      echo my_generate_controller(array('name'=>'destination','label'=>'destination','type'=>'select',
+          'attribute'=>array('multiple'=>TRUE,
+              'placeholder'=>'choose_or_create',
+              'options'=>$options
+              )));?>
+       <?php echo my_generate_controller(array('name'=>'travle_time','label'=>'travle_time','type'=>'text',
+          'attribute'=>array('input_wrapper_class'=>'date '),//input-group
+          'option'=>array(
+           //   'after'=>' <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>'
+          )));?>
+<!--       <div class="form-group">
                 <label for="dtp_input2" class="control-label"><?php echo $this->lang->line('travle_time'); ?></label>
                 <div class="input-group date form_date" id="travle_time" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                     <input class="form-control" id="travle_time1" size="16" type="text" value="" >
 		    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
 			<input type="hidden" id="travle_time2" value="" /><br/>	
-            </div>
-      <div class="form-group">
-          <label class="control-label" for="agent"><?php echo $this->lang->line('special_event'); ?>  </label>
-          <select  multiple="multiple" data-placeholder="<?php echo $this->lang->line('choose_or_create'); ?>..."  class="form-control required chzn-select"  name= "special_event[]" id="special_event" >
-            <option value=""></option>
-            <?php if(!isset($event['error'])){     foreach($event as $item){
-                echo "<option value='{$item['id']}'>{$item['name']}</option>";
-            }}?>
-           
-        
-          </select>
-
-      </div>
+            </div>-->
+      <?php 
+        $options = array();
+        if(!isset($event['error'])){ foreach($event as $item){
+            $options[$item['id']] = $item['name'];
+            }}
+      echo my_generate_controller(array('name'=>'special_event','label'=>'special_event','type'=>'select',
+          'attribute'=>array('multiple'=>TRUE,
+              'placeholder'=>'choose_or_create',
+              'options'=>$options
+              )));?>
+   
    <textarea cols="80" id="content" name="content" rows="10">place holder 1</textarea>
-  <input type="submit" name="submit" value="<?php echo $this->lang->line('submit'); ?>" id="save" class="save" />
+   <div class="form-group">
+        <!-- Button -->
+        <div class="controls">
+            <input type="submit" name="submit" value="<?php echo $this->lang->line('submit'); ?>" id="save" class="save" />
+        </div>
+   </div>
   </form>
   <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 </div>

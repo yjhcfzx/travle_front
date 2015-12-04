@@ -1,4 +1,5 @@
 @CHARSET "UTF-8";
+.clear{clear:both;}
 body
 {font-size:16px;}
 .my-circle{border-radius:50%;}

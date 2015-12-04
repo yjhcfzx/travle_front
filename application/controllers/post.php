@@ -79,6 +79,10 @@ class post extends My_Controller {
                 $request_url =  'comment/list/format/json';
                 $resp = my_api_request($request_url , $method = 'get', $param = array('post_id'=>$id));
                 $resp = json_decode($resp,true);
+                if(isset($resp['error']))
+		{
+			$resp = null;
+		}
                 $this->data['comments'] = $resp;
 	    }
             

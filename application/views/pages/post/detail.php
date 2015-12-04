@@ -6,8 +6,8 @@
          }
      } ?></h2>
     
-    <h2><?php  if(isset($items['special_event'])){
-         foreach($items['special_event'] as $event){
+    <h2><?php  if(isset($items['special_events'])){
+         foreach($items['special_events'] as $event){
              echo $event['name'] , ' ';
          }
      } ?></h2>
@@ -18,7 +18,7 @@
      
      <h3><?php echo $this->lang->line('comment'); ?></h3>
      <?php if($comments): foreach($comments as $comment):?>
-    <div class="list-item panel panel-warning" onclick='javascript:window.location.href = "<?php echo  $this->config->item('base_url');?>post/detail/<?php echo$product['id']; ?>";'>
+    <div class="list-item panel panel-warning">
 	            <div class="panel-heading"><?php echo $comment['author'];?> <?php echo $comment['created_at'];?></div>
 	       		<div class="panel-body">
 				    <div class = 'row'>
@@ -27,7 +27,7 @@
 				    	</div>
 				    </div>
 				</div>
- 		   		<div class="panel-footer"><?php echo $this->lang->line('reply'); ?></div>
+ 		   		<div class="panel-footer"><?php //echo $this->lang->line('reply'); ?></div>
 	       </div>
      <?php  endforeach; endif;?>
      <div id="comment-section">
