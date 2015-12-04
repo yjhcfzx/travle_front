@@ -62,7 +62,7 @@
                 'content': editor.getData(),
                  'special_event': $('#special_event').val() ? $('#special_event').val().join(',') : '',
                  'destination': $('#destination').val() ? $('#destination').val().join(',') : '',
-                  'travle_time': $('#travle_time1').val(),
+                  'travle_time': $('#travle_time').val(),
                   'title': $('#title').val(),
                 
             };
