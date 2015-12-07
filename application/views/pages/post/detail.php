@@ -1,5 +1,8 @@
 <div id="container">
     <h1><?php  echo $items['title']; ?></h1>
+    <div><?php if($is_author){ echo "<span style='margin-right:5px;position:relative;top:2px;' class='glyphicon glyphicon-edit'></span><a href='?action=edit'>" . 
+            $this->lang->line('edit'). "</a>";}?>
+    </div>
      <h2><?php  if(isset($items['destination'])){
          foreach($items['destination'] as $dest){
              echo $dest['name'] , ' ';
