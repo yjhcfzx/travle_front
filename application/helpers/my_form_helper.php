@@ -8,6 +8,7 @@ if ( ! function_exists('my_generate_controller'))
         $class = 'form-control  required';
         $attribute = isset($contoller['attribute']) ? $contoller['attribute'] : array();
         $option = isset($contoller['option']) ? $contoller['option'] : array();
+        $value = isset($contoller['value']) ? $contoller['value'] : '';
         if(isset($attribute['class'])){
             $class .= ' ' . $attribute['class'];
         }
@@ -21,16 +22,23 @@ if ( ! function_exists('my_generate_controller'))
         
         switch($contoller['type']){
             case 'text':
-                $element_html = ' <input class="' . $class . '"  name= "title" id="' . $name . '" />';
+                $element_html = ' <input class="' . $class . '"  name= "title" id="' . $name . '"  value="' . $value .'"/>';
                 break;
             case 'select':
+                if($value && !is_array($value)){
+                    $selected = array();
+                    $selected[$value] = 1;
+                }
+                else{
+                    $selected = $value;
+                }
                 $multiple = (isset( $attribute['multiple']) && $attribute['multiple'] ) ? TRUE : FALSE;
             $element_html =   '<select ' .  ($multiple ? ' multiple="multiple" ' : '')  . 
                     ' data-placeholder="' . ( isset( $attribute['placeholder']) ? $CI->lang->line($attribute['placeholder']) : $CI->lang->line('choose_or_create') ) . '..."  class="' . $class . ' chzn-select"  name= "' . ($multiple ? $name . '[]' : $name ) . '" id="' . $name . '" >';
            $element_html .= ' <option value=""></option>';
            if(isset($attribute['options']) && $attribute['options']){
                foreach($attribute['options'] as $key=>$value){
-                $element_html .= "<option value='{$key}'>{$value}</option>";
+                $element_html .= "<option value='{$key}' " . (isset($selected[$key]) ? ' selected ' : '') . ">{$value}</option>";
             }
            }
 

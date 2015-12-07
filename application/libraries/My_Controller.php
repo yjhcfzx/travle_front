@@ -53,6 +53,20 @@ abstract class My_Controller extends CI_Controller
     		//$this->load->view('upload_success', $this->data);
     	}
     }
+    
+    protected function getDestinations(){
+         $destination_url = 'common/destination/format/json';
+         $destination = my_api_request($destination_url , $method = 'get', $param = array());
+         $destination = json_decode($destination,true);
+         return $destination;
+    }
+    
+    protected function getEvents(){
+         $event_url = 'common/event/format/json';
+         $event = my_api_request($event_url , $method = 'get', $param = array());
+         $event = json_decode($event,true);
+         return $event;
+    }
 
     /**
      * Constructor function

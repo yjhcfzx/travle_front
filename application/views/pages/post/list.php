@@ -26,8 +26,7 @@
                 $img = $doc->getElementsByTagName('img')->item(0);
                 if($img){$imgOfText = $img->getAttribute('src');}}?>
 	       <div class="list-item panel panel-warning" onclick='javascript:window.location.href = "<?php echo  $this->config->item('base_url');?>post/detail/<?php echo$product['id']; ?>";'>
-	            <div class="panel-heading"><?php echo $product['title']?>
-						    	  			<span class="glyphicon glyphicon-road"></span>
+	            <div class="panel-heading"><?php echo $product['title']?> <span style='margin-left:3px;position:relative;top:2px;' class="glyphicon glyphicon-time"></span>
 						    	  		<?php echo $product['travle_time']?></div>
 	       		<div class="panel-body">
 				    <div class = 'row'>
@@ -44,7 +43,8 @@
 				    	</div>
 				    </div>
 				</div>
- 		   		<div class="panel-footer"><?php echo $product['destination'] .' ' .  $product['author'];?> <?php echo $product['created_at'];?></div>
+ 		   		<div class="panel-footer"><span style='position:relative;top:2px;' class="glyphicon glyphicon-plane"></span>
+                                    <?php echo $product['destination'] ?><span style='margin-left:10px;position:relative;top:2px;' class="glyphicon glyphicon-user"></span> <?php echo  $product['author'];?> <span style='margin-left:10px;position:relative;top:2px;' class="glyphicon glyphicon-pencil"></span> <?php echo $product['created_at'];?></div>
 	       </div>
 	       <?php endforeach;}?>
 	    </div>

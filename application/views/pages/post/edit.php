@@ -1,18 +1,22 @@
 <div id="container">
-  <h1><?php echo $this->lang->line('create_post'); ?></h1>
+  <h1><?php echo $this->lang->line('edit_post'); ?></h1>
   <form method="post">
-      <?php echo my_generate_controller(array('name'=>'title','label'=>'title','type'=>'text'));?>
+      <?php echo my_generate_controller(array('name'=>'title','label'=>'title','type'=>'text','value'=>$items['title']));?>
       <?php 
         $options = array();
         if(!isset($destination['error'])){ foreach($destination as $item){
             $options[$item['id']] = $item['name'];
             }}
-      echo my_generate_controller(array('name'=>'destination','label'=>'destination','type'=>'select',
+            $value = array();
+            foreach($items['destination'] as $item){
+                $value[$item['id']] = $item['name'];
+            }
+      echo my_generate_controller(array('name'=>'destination','label'=>'destination','type'=>'select','value'=>$value,
           'attribute'=>array('multiple'=>TRUE,
               'placeholder'=>'choose_or_create',
               'options'=>$options
               )));?>
-       <?php echo my_generate_controller(array('name'=>'travle_time','label'=>'travle_time','type'=>'text',
+       <?php echo my_generate_controller(array('name'=>'travle_time','label'=>'travle_time','type'=>'text','value'=>$items['travle_time'],
           'attribute'=>array('input_wrapper_class'=>'date '),//input-group
           'option'=>array(
            //   'after'=>' <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>'
@@ -30,13 +34,17 @@
         if(!isset($event['error'])){ foreach($event as $item){
             $options[$item['id']] = $item['name'];
             }}
-      echo my_generate_controller(array('name'=>'special_event','label'=>'special_event','type'=>'select',
+          $value = array();
+            foreach($items['special_events'] as $item){
+                $value[$item['id']] = $item['name'];
+            }
+      echo my_generate_controller(array('name'=>'special_event','label'=>'special_event','type'=>'select','value'=>$value,
           'attribute'=>array('multiple'=>TRUE,
               'placeholder'=>'choose_or_create',
               'options'=>$options
               )));?>
    
-   <textarea cols="80" id="content" name="content" rows="10">place holder 1</textarea>
+   <textarea cols="80" id="content" name="content" rows="10"><?php echo isset($items['content']) ? $items['content'] : ''; ?></textarea>
    <div class="form-group">
         <!-- Button -->
         <div class="controls">
@@ -44,7 +52,6 @@
         </div>
    </div>
   </form>
-  <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 </div>
 
 <link rel="stylesheet" href="<?php echo $this->config->item( 'base_theme_url');?>css/chosen.css">
@@ -59,6 +66,7 @@
         $('#save').click(function(event ){
             event.preventDefault();
             var request = {
+                'id':<?php echo $items['id'];?>,
                 'content': editor.getData(),
                  'special_event': $('#special_event').val() ? $('#special_event').val().join(',') : '',
                  'destination': $('#destination').val() ? $('#destination').val().join(',') : '',
@@ -81,7 +89,7 @@
 				return false;
                             }
                             else{
-                                 window.location.href = "<?php echo $this->config->item( 'base_url');?>post";
+                                 window.location.href = "<?php echo $this->config->item( 'base_url');?>post/detail/<?php echo $items['id'];?>";
                             }
 			
 			});

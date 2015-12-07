@@ -40,14 +40,10 @@ class post extends My_Controller {
 	}
         public function create()
         {
-            $destination_url = 'common/destination/format/json';
-            $destination = my_api_request($destination_url , $method = 'get', $param = array());
-            $destination = json_decode($destination,true);
+            $destination = $this->getDestinations();
             $this->data['destination'] =    $destination;
-            
-            $event_url = 'common/event/format/json';
-            $event = my_api_request($event_url , $method = 'get', $param = array());
-            $event = json_decode($event,true);
+
+            $event = $this->getEvents();
             $this->data['event'] =    $event;
             
 	   $this->load->view('templates/header',
@@ -74,8 +70,15 @@ class post extends My_Controller {
 			$this->data['error'] = $resp['error'];
 		}
 	    else {
-	    	
+                $author_id = $resp['uid'];
+                if(isset($this->data['user']) && $this->data['user']['id'] == $author_id){
+                    $is_author = TRUE;
+                    
+                } else{
+                    $is_author = FALSE;
+                }
 	    	$this->data['items'] = $resp;
+                $this->data['is_author'] = $is_author;
                 $request_url =  'comment/list/format/json';
                 $resp = my_api_request($request_url , $method = 'get', $param = array('post_id'=>$id));
                 $resp = json_decode($resp,true);
@@ -90,8 +93,23 @@ class post extends My_Controller {
 		$this->load->view('templates/header',
 				$this->data
 		);
+                if(isset($_GET['action'])){
+                    if($_GET['action'] == 'edit' && $is_author){
+                          $destination = $this->getDestinations();
+                          $this->data['destination'] =    $destination;
+                          $event = $this->getEvents();
+                          $this->data['event'] =    $event;
+                        
+                        $this->load->view('pages/' .   $this->data ['router'] . '/edit', $this->data);
+                    }
+                    else{
+                        $this->load->view('pages/' .   $this->data ['router'] . '/detail', $this->data);
+                    }
+                }
+                else{
+                    $this->load->view('pages/' .   $this->data ['router'] . '/detail', $this->data);
+                }
 		
-		$this->load->view('pages/' .   $this->data ['router'] . '/detail', $this->data);
 		$this->load->view('templates/footer', $this->data);
 	}
 	
