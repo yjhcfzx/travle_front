@@ -1,5 +1,22 @@
 var current_page = default_page = 'bussiness';
+Date.prototype.yyyymmdd = function() {
+   var yyyy = this.getFullYear().toString();
+   var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
+   var dd  = this.getDate().toString();
+   return yyyy + '-' + (mm[1]?mm:"0"+mm[0]) + '-' + (dd[1]?dd:"0"+dd[0]); // padding
+  };
 
+function arrayUnique(array) {
+    var a = array.concat();
+    for(var i=0; i<a.length; ++i) {
+        for(var j=i+1; j<a.length; ++j) {
+            if(a[i] === a[j])
+                a.splice(j--, 1);
+        }
+    }
+
+    return a;
+}
 $(document).ready(function(){
 	
 	/*var current_page = getHash() || default_page;
