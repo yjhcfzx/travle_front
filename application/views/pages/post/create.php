@@ -49,7 +49,11 @@
 </div>
 </div>
 <h2><?php echo $this->lang->line('post_content'); ?></h2>
-   <textarea cols="80" id="content" name="content" rows="10">place holder 1</textarea>
+<div class='operations'><span id='insert_picture'><span class="glyphicon glyphicon-picture"></span> <?php echo $this->lang->line('insert_picture'); ?></span></div>
+ <input type='file' id="imgInp" style='display:none;' />
+     
+<p id='post_content' contenteditable="true" class='textarea'>This is an editable paragraph.</p>
+<!--   <textarea cols="80" id="content" name="content" rows="10">place holder 1</textarea>-->
    <div class="form-group">
         <!-- Button -->
         <div class="controls">
@@ -57,7 +61,6 @@
         </div>
    </div>
   </form>
-  <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 </div>
 
 <link rel="stylesheet" href="<?php echo $this->config->item( 'base_theme_url');?>css/chosen.css">
@@ -68,6 +71,15 @@
 
 
 <script>
+        
+   function insert_picture(src){
+
+       var new_src = saveBase64(src,"<?php echo $this->config->item('base_url');?>ajax/image");
+
+       var content = $('#post_content').html();
+       content += "<img style='max-width:600px;max-height:600px' src='<?php echo $this->config->item('base_upload_url');?>" + new_src + "' />";
+       $('#post_content').html(content);
+   }
     function generateItinerary(){
           var end_date =  $('#travle_end_time').val();
             var start_date = $('#travle_start_time').val();
@@ -102,6 +114,11 @@
     }
     }
     $(document).ready(function(){
+         $("#imgInp").change(function(){
+        readURL(this,insert_picture);});
+    $('#insert_picture').click(function(){
+         $("#imgInp").trigger('click');
+    });
         $('#travle_end_time,#travle_start_time').change(function(){
                 generateItinerary();
         });
@@ -115,7 +132,8 @@
             });
             destination_arr = arrayUnique(destination_arr);
             var request = {
-                'content': editor.getData(),
+               // 'content': editor.getData(),
+               'content': $('#post_content').html(),
                  'special_event': $('#special_event').val() ? $('#special_event').val().join(',') : '',
                  'destination': destination_arr ? destination_arr.join(',') : '',
                   'travle_start_time': $('#travle_start_time').val(),
@@ -123,7 +141,7 @@
                   'title': $('#title').val(),
                 
             };
-            console.log(request);return;
+
             $.ajax({
 		async:false,
 		url: "<?php echo $this->config->item('base_url');?>ajax",
@@ -162,26 +180,7 @@
 		minView: 2,
 		forceParse: 0
     });
-      //<![CDATA[
 
-				// This call can be placed at any point after the
-				// <textarea>, or inside a <head><script> in a
-				// window.onload event handler.
-
-				// Replace the <textarea id="editor"> with an CKEditor
-				// instance, using default configurations.
-		var editor =		CKEDITOR.replace( 'content',
-                {
-                    language : 'zh-cn',
-                    filebrowserBrowseUrl :'<?php echo $this->config->item('base_theme_url');?>js/ckeditor/filemanager/browser/default/browser.html?Connector=<?php echo $this->config->item( "ckeditor_connector_url");?>',
-                    filebrowserImageBrowseUrl : '<?php echo $this->config->item('base_theme_url');?>js/ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=<?php echo $this->config->item( "ckeditor_connector_url");?>',
-                    filebrowserFlashBrowseUrl :'<?php echo $this->config->item('base_theme_url');?>js/ckeditor/filemanager/browser/default/browser.html?Type=Flash&Connector=<?php echo $this->config->item( "ckeditor_connector_url");?>',
-					filebrowserUploadUrl  :'<?php echo $this->config->item( "ckeditor_upload_url");?>?Type=File',
-					filebrowserImageUploadUrl : '<?php echo $this->config->item( "ckeditor_upload_url");?>?Type=Image',
-					filebrowserFlashUploadUrl : '<?php echo $this->config->item( "ckeditor_upload_url");?>?Type=Flash'
-				});
-
-			//]]>
                         
                         $('#itinerary_1').hide();
     });

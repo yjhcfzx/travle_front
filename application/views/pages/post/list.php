@@ -27,7 +27,7 @@
                 if($img){$imgOfText = $img->getAttribute('src');}}?>
 	       <div class="list-item panel panel-warning" onclick='javascript:window.location.href = "<?php echo  $this->config->item('base_url');?>post/detail/<?php echo$product['id']; ?>";'>
 	            <div class="panel-heading"><?php echo $product['title']?> <span style='margin-left:3px;position:relative;top:2px;' class="glyphicon glyphicon-time"></span>
-						    	  		<?php echo $product['travle_time']?></div>
+						    	  		<?php echo $product['travle_start_time']?></div>
 	       		<div class="panel-body">
 				    <div class = 'row'>
 				    	<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">

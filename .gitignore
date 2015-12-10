@@ -8,3 +8,4 @@
 /public/img/upload/*
 *.config
 .project
+public/upload/

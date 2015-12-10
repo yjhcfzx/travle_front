@@ -29,6 +29,7 @@ $lang['return_home']			= "返回首页";
 $lang['register_success']			= "您已完成注册";
 $lang['required_error']			= "请输入";
 $lang['uploadimage']			= "上传图片";
+$lang['insert_picture']			= "插入图片";
 $lang['addImg']					= "添加图片";
 $lang['imgsizelimit']			= "图片大小不超过1024*768";
 $lang['post_comment']			= "发表评论";

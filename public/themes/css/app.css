@@ -106,3 +106,12 @@ padding: 0 !important;
 .thumbnail-img{
     max-width: 80%;
 }
+.textarea{
+    padding:10px;
+    max-width:100%;
+    min-height:50px;
+    border:1px solid #ccc;
+}
+.textarea:hover{
+    //border-color:#ffa800;
+}

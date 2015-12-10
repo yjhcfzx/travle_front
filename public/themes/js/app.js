@@ -17,6 +17,41 @@ function arrayUnique(array) {
 
     return a;
 }
+
+function saveBase64(src, url){
+    var rst = '';
+    $.ajax({
+		async:false,
+		url: url,
+		type: "POST",
+		data: { 
+                        'request':{'src':src}
+                    },
+		dataType: "text"
+		}).done(function(data){
+			if(!data){
+				return false;
+                            }
+                            else{
+                               rst = data;
+                            }
+			
+			});
+                        return rst;
+}
+  function readURL(input, callback) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                callback(e.target.result);
+               // $('#blah').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
 $(document).ready(function(){
 	
 	/*var current_page = getHash() || default_page;
