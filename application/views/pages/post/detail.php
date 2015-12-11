@@ -9,15 +9,31 @@
          }
      } ?></h2>
     
+    <div class='fieldset'>
+     <?php echo my_generate_legend('itinerary');?>
+        <?php  if(isset($items['itinerary'])){
+         foreach($items['itinerary'] as $it){
+             echo $it['travle_date'] , ' ' , $it['dname'];
+         }
+     } ?>
+
+    </div>
     <h2><?php  if(isset($items['special_events'])){
          foreach($items['special_events'] as $event){
              echo $event['name'] , ' ';
          }
      } ?></h2>
      <h3><?php  echo $items['author'] , ' ' , $items['created_at']  ; ?></h3>
+      <pre>
+         <?php  echo $items['prepare_content']; ?>
+     </pre>
+      <pre>
+         <?php  echo $items['travle_tip']; ?>
+     </pre>
      <pre>
          <?php  echo $items['content']; ?>
      </pre>
+     
      
      <h3><?php echo $this->lang->line('comment'); ?></h3>
      <?php if($comments): foreach($comments as $comment):?>

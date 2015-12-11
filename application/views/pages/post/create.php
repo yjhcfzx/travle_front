@@ -125,11 +125,14 @@
         $('#save').click(function(event ){
             event.preventDefault();
             var destination_arr = [];
+            var itinerary = [];
             $('#itinerary_container .itinerary').each(function(item){
-                var values = $(this).find('select.form-control').val(); console.log(values);
-                destination_arr = destination_arr.concat(values); 
-                console.log(destination_arr);
+                var values = $(this).find('select.form-control').val(); 
+                itinerary.push( values.join(','));
+                destination_arr = destination_arr.concat(values);
+               
             });
+            itinerary = itinerary.join('#');
             destination_arr = arrayUnique(destination_arr);
             var request = {
                // 'content': editor.getData(),
@@ -141,9 +144,8 @@
                   'title': $('#title').val(),
                   'prepare_content':$('#prepare_content').html(),
                    'travle_tip':$('#travle_tip').html(),
-                
+                 'itinerary': itinerary,
             };
-
             $.ajax({
 		async:false,
 		url: "<?php echo $this->config->item('base_url');?>ajax",
