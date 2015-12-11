@@ -1,22 +1,32 @@
 <div id="container">
-    <h1><?php  echo $items['title']; ?></h1>
-    <div><?php if($is_author){ echo "<span style='margin-right:5px;position:relative;top:2px;' class='glyphicon glyphicon-edit'></span><a href='?action=edit'>" . 
-            $this->lang->line('edit'). "</a>";}?>
-    </div>
-     <h2><?php  if(isset($items['destination'])){
+    <h1><?php  echo $items['title'];?></h1>
+    <div class="panel-heading">
+       <span style='position:relative;top:2px;' class="glyphicon glyphicon-user"></span> <?php echo  $items['author'];?> <span style='margin-left:10px;position:relative;top:2px;' class="glyphicon glyphicon-pencil"></span> <?php echo $items['created_at'];?>
+    <div>
+        <div>
+            <span style='position:relative;top:2px;' class="glyphicon glyphicon-plane"></span>
+               <?php  if(isset($items['destination'])){
          foreach($items['destination'] as $dest){
              echo $dest['name'] , ' ';
          }
-     } ?></h2>
+     } ?>
+        </div>
+        <?php if($is_author){ echo "<span style='margin-right:5px;position:relative;top:2px;' class='glyphicon glyphicon-edit'></span><a href='?action=edit'>" . 
+            $this->lang->line('edit'). "</a>";}?>
+    </div>
+
     
     <div class='fieldset'>
      <?php echo my_generate_legend('itinerary');?>
         <?php  if(isset($items['itinerary'])){
          foreach($items['itinerary'] as $it){
-             echo $it['travle_date'] , ' ' , $it['dname'];
+             echo '<div>' , $it['travle_date'] , ' ' , $it['dname'] , '</div>';
          }
      } ?>
 
+    </div>
+    <div class='fieldset'>
+    <?php echo my_generate_legend('post_content');?>
     </div>
     <h2><?php  if(isset($items['special_events'])){
          foreach($items['special_events'] as $event){
