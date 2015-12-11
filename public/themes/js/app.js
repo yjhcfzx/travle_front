@@ -39,12 +39,22 @@ function saveBase64(src, url){
 			});
                         return rst;
 }
-  function readURL(input, callback) {
+
+  function insert_picture(src,target){
+
+       var new_src = saveBase64(src, base_url + "ajax/image");
+
+       var content = $(target).html();
+       content += "<img style='max-width:600px;max-height:600px' src='" + base_upload_url + new_src + "' />";
+       $(target).html(content);
+   }
+   
+  function readURL(input, target, callback) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             
             reader.onload = function (e) {
-                callback(e.target.result);
+                callback(e.target.result, target);
                // $('#blah').attr('src', e.target.result);
             }
             

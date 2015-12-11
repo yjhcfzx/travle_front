@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>我要浪</title>
+<script>
+var base_url = "<?php echo $this->config->item('base_url');?>";
+var base_upload_url = "<?php echo $this->config->item('base_upload_url');?>";
+</script>
 <link rel="icon"   type="image/png"    href="<?php echo $this->config->item( 'base_theme_url');?>images/favicon.ico">
  <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="<?php echo $this->config->item( 'base_theme_url');?>css/bootstrap.css">

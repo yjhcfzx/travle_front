@@ -1,9 +1,19 @@
+ <?php echo my_generate_bread('create_post');?>
 <div id="container">
-  <h1><?php echo $this->lang->line('create_post'); ?></h1>
   <form method="post">
-      <?php echo my_generate_controller(array('name'=>'title','label'=>'title','type'=>'text'));?>
-     
-       <?php echo my_generate_controller(array('name'=>'travle_start_time','label'=>'travle_start_time','type'=>'text',
+
+<!--       <div class="form-group">
+                <label for="dtp_input2" class="control-label"><?php echo $this->lang->line('travle_time'); ?></label>
+                <div class="input-group date form_date" id="travle_time" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" id="travle_time1" size="16" type="text" value="" >
+		    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+			<input type="hidden" id="travle_time2" value="" /><br/>	
+            </div>-->
+<div class='fieldset'>
+     <?php echo my_generate_legend('itinerary');?>
+    
+ <?php echo my_generate_controller(array('name'=>'travle_start_time','label'=>'travle_start_time','type'=>'text',
           'attribute'=>array('input_wrapper_class'=>'date ', 'class'=>'date-picker'),//input-group
           'option'=>array(
            //   'after'=>' <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>'
@@ -13,25 +23,6 @@
           'option'=>array(
            //   'after'=>' <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>'
           )));?>
-<!--       <div class="form-group">
-                <label for="dtp_input2" class="control-label"><?php echo $this->lang->line('travle_time'); ?></label>
-                <div class="input-group date form_date" id="travle_time" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" id="travle_time1" size="16" type="text" value="" >
-		    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                </div>
-			<input type="hidden" id="travle_time2" value="" /><br/>	
-            </div>-->
-      <?php 
-        $options = array();
-        if(!isset($event['error'])){ foreach($event as $item){
-            $options[$item['id']] = $item['name'];
-            }}
-      echo my_generate_controller(array('name'=>'special_event','label'=>'special_event','type'=>'select',
-          'attribute'=>array('multiple'=>TRUE,
-              'placeholder'=>'choose_or_create',
-              'options'=>$options
-              )));?>
-<h2><?php echo $this->lang->line('itinerary'); ?></h2>
 <div id='itinerary_container'>
 <div class='itinerary' id='itinerary_1'>
     <h3><span class='itinerary_index'>D1</span> <span class='itinerary_time'></span></h3>
@@ -47,13 +38,33 @@
               )));?>
 
 </div>
+</div><!--end itineary conainer-->
 </div>
-<h2><?php echo $this->lang->line('post_content'); ?></h2>
-<div class='operations'><span id='insert_picture'><span class="glyphicon glyphicon-picture"></span> <?php echo $this->lang->line('insert_picture'); ?></span></div>
- <input type='file' id="imgInp" style='display:none;' />
-     
-<p id='post_content' contenteditable="true" class='textarea'>This is an editable paragraph.</p>
+<div class='fieldset'>
+    <?php echo my_generate_legend('post_content');?>
+  <?php echo my_generate_controller(array('name'=>'title','label'=>'title','type'=>'text'));?>
+  
+   <?php echo my_generate_controller(array('name'=>'prepare_content','label'=>'prepare_content','type'=>'textarea'));?>
+    <div class="breaker40"></div>
+     <?php echo my_generate_controller(array('name'=>'travle_tip','label'=>'travle_tip','type'=>'textarea'));?>
+    <div class="breaker40"></div>
+   <?php echo my_generate_controller(array('name'=>'post_content','label'=>'post_content','type'=>'textarea'));?>
+   
+</div>
+<div class='fieldset'>
+    <?php echo my_generate_legend('other');?>
+ <?php 
+        $options = array();
+        if(!isset($event['error'])){ foreach($event as $item){
+            $options[$item['id']] = $item['name'];
+            }}
+      echo my_generate_controller(array('name'=>'special_event','label'=>'special_event','type'=>'select',
+          'attribute'=>array('multiple'=>TRUE,
+              'placeholder'=>'choose_or_create',
+              'options'=>$options
+              )));?>
 <!--   <textarea cols="80" id="content" name="content" rows="10">place holder 1</textarea>-->
+</div>
    <div class="form-group">
         <!-- Button -->
         <div class="controls">
@@ -72,14 +83,7 @@
 
 <script>
         
-   function insert_picture(src){
-
-       var new_src = saveBase64(src,"<?php echo $this->config->item('base_url');?>ajax/image");
-
-       var content = $('#post_content').html();
-       content += "<img style='max-width:600px;max-height:600px' src='<?php echo $this->config->item('base_upload_url');?>" + new_src + "' />";
-       $('#post_content').html(content);
-   }
+ 
     function generateItinerary(){
           var end_date =  $('#travle_end_time').val();
             var start_date = $('#travle_start_time').val();
@@ -114,11 +118,7 @@
     }
     }
     $(document).ready(function(){
-         $("#imgInp").change(function(){
-        readURL(this,insert_picture);});
-    $('#insert_picture').click(function(){
-         $("#imgInp").trigger('click');
-    });
+        
         $('#travle_end_time,#travle_start_time').change(function(){
                 generateItinerary();
         });
@@ -139,6 +139,8 @@
                   'travle_start_time': $('#travle_start_time').val(),
                   'travle_end_time': $('#travle_end_time').val(),
                   'title': $('#title').val(),
+                  'prepare_content':$('#prepare_content').html(),
+                   'travle_tip':$('#travle_tip').html(),
                 
             };
 

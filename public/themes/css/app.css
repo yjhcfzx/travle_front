@@ -1,11 +1,24 @@
 @CHARSET "UTF-8";
 .clear{clear:both;}
 body
-{font-size:16px;}
+{font-size:16px;color:#333;}
 .my-circle{border-radius:50%;}
 .my-red{background:red;color:#fff;}
 .my-orange{background:#ee7337;color:#fff;}
+.my-orange:hover, .my-orange:focus{background:#eab020;color:#fff;}
 .my-blue{background:#337ab7;color:#fff;}
+.fieldset{
+    margin-bottom:15px;
+}
+.fieldset .legend.orange{
+    display:inline-block;
+    padding-right:80px;
+    border-bottom: 1px solid #ee7337; 
+    
+}
+.fieldset .legend .btn{
+    font-size:1.5em;
+}
 .center{margin:0px auto;text-align:center;}
 .bussiniess-list > div{text-align:center;margin:10px 0px;}
 .bussiniess-list .my-circle{padding:20%;text-align:center;display:inline-block;}
@@ -109,9 +122,24 @@ padding: 0 !important;
 .textarea{
     padding:10px;
     max-width:100%;
-    min-height:50px;
+    min-height:150px;
     border:1px solid #ccc;
+    position:relative;
+    margin-bottom:0px;
 }
 .textarea:hover{
     //border-color:#ffa800;
+}
+.operations{padding:10px;}
+.breaker40{
+    margin-bottom:40px;
+    height:1px;
+}
+.gradient{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eeeeee+0,cccccc+100;Gren+3D */
+background: rgb(238,238,238); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
 }
