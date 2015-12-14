@@ -1,4 +1,66 @@
 var current_page = default_page = 'bussiness';
+Date.prototype.yyyymmdd = function() {
+   var yyyy = this.getFullYear().toString();
+   var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
+   var dd  = this.getDate().toString();
+   return yyyy + '-' + (mm[1]?mm:"0"+mm[0]) + '-' + (dd[1]?dd:"0"+dd[0]); // padding
+  };
+
+function arrayUnique(array) {
+    var a = array.concat();
+    for(var i=0; i<a.length; ++i) {
+        for(var j=i+1; j<a.length; ++j) {
+            if(a[i] === a[j])
+                a.splice(j--, 1);
+        }
+    }
+
+    return a;
+}
+
+function saveBase64(src, url){
+    var rst = '';
+    $.ajax({
+		async:false,
+		url: url,
+		type: "POST",
+		data: { 
+                        'request':{'src':src}
+                    },
+		dataType: "text"
+		}).done(function(data){
+			if(!data){
+				return false;
+                            }
+                            else{
+                               rst = data;
+                            }
+			
+			});
+                        return rst;
+}
+
+  function insert_picture(src,target){
+
+       var new_src = saveBase64(src, base_url + "ajax/image");
+
+       var content = $(target).html();
+       content += "<img style='max-width:600px;max-height:600px' src='" + base_upload_url + new_src + "' />";
+       $(target).html(content);
+   }
+   
+  function readURL(input, target, callback) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                callback(e.target.result, target);
+               // $('#blah').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 
 $(document).ready(function(){
 	
