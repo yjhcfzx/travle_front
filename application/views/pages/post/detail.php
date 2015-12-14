@@ -1,23 +1,65 @@
 <div id="container">
-    <h1><?php  echo $items['title']; ?></h1>
-    <div><?php if($is_author){ echo "<span style='margin-right:5px;position:relative;top:2px;' class='glyphicon glyphicon-edit'></span><a href='?action=edit'>" . 
-            $this->lang->line('edit'). "</a>";}?>
-    </div>
-     <h2><?php  if(isset($items['destination'])){
+    <h1><?php  echo $items['title'];?></h1>
+    <div class="you_section">
+      <span style='position:relative;top:2px;' class="glyphicon glyphicon-user"></span> <?php echo  $items['author'];?> <span style='margin-left:10px;position:relative;top:2px;' class="glyphicon glyphicon-pencil"></span> <?php echo $items['created_at'];?>
+       
+            <span style='position:relative;top:2px;' class="glyphicon glyphicon-plane"></span>
+               <?php  if(isset($items['destination'])){
          foreach($items['destination'] as $dest){
              echo $dest['name'] , ' ';
          }
-     } ?></h2>
-    
-    <h2><?php  if(isset($items['special_events'])){
+     } ?>
+     
+    <div class="you-row"> 
+        <?php if($is_author){ echo "<span style='margin-right:5px;position:relative;top:2px;' class='glyphicon glyphicon-edit'></span><a href='?action=edit'>" . 
+            $this->lang->line('edit'). "</a>";}?>
+    </div>
+     </div>
+
+    <?php  if(isset($items['special_events'])){?>
+ <div class='fieldset'>
+    <?php echo my_generate_legend('special_event');?>
+     <div class="you-row">
+     <?php 
          foreach($items['special_events'] as $event){
-             echo $event['name'] , ' ';
+             echo  $event['name'] , ' ';
          }
-     } ?></h2>
-     <h3><?php  echo $items['author'] , ' ' , $items['created_at']  ; ?></h3>
-     <pre>
+     ?>
+     </div>
+    </div>
+    <?php  } ?>
+    <div class='fieldset'>
+     <?php echo my_generate_legend('itinerary');?>
+        <?php  if(isset($items['itinerary'])){
+         foreach($items['itinerary'] as $it){
+             echo '<div class="you-row"><span style="position:relative;top:2px;" class="glyphicon glyphicon-calendar"></span> ' , $it['travle_date'] , ' ' , $it['dname'] , '</div>';
+         }
+     } ?>
+
+    </div>
+    <div class='fieldset'>
+    <?php echo my_generate_legend('post_content');?>
+    </div>
+    <div class="you_section">
+    <label class="control-label"> <?php echo $this->lang->line('prepare_content'); ?>   </label>
+     <div class="you-p">
+         <?php  echo $items['prepare_content']; ?>
+     </div>
+    </div>
+    <div class="you_section">
+    <label class="control-label"> <?php echo $this->lang->line('travle_tip'); ?>   </label>
+     <div class="you-p">
+         <?php  echo $items['travle_tip']; ?>
+     </div>
+    </div>
+     <div class="you_section">
+    <label class="control-label"> <?php echo $this->lang->line('post_content'); ?>   </label>
+     <div class="you-p">
          <?php  echo $items['content']; ?>
-     </pre>
+     </div>
+    </div>
+    
+     
      
      <h3><?php echo $this->lang->line('comment'); ?></h3>
      <?php if($comments): foreach($comments as $comment):?>
