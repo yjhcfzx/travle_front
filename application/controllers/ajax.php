@@ -36,6 +36,7 @@ class ajax extends My_Controller {
         
         public function image()
 	{
+            try{
 		$request = isset($_POST ['request']) ? $_POST ['request'] : array();
                 $src = $request['src'];
                 $index = strpos($src, 'base64,') + 7;
@@ -55,6 +56,11 @@ class ajax extends My_Controller {
 		
 		header('Content-Type: application/json');
                 echo  $plain_name . '_thumb.' . $type;
+            }
+            catch(Exception $e){
+                header('Content-Type: application/json');
+                echo $e->getMessage();
+            }
 		//return $data;
 		
 	}
