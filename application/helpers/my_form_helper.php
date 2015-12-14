@@ -28,7 +28,7 @@ if (!function_exists('my_generate_controller')) {
 </div>
 <input type='file' id='{$name}_hidden_file' style='display:none;' />
      
-<p id='{$name}' contenteditable='true' class='textarea'></p>
+<p id='{$name}' contenteditable='true' class='textarea'>{$value}</p>
 
 <div class='operations gradient'>
     <button id='{$name}_insert_picture_bottom' type='button' class='btn btn-xs btn-default  image_trigger' aria-label='Left Align'>
