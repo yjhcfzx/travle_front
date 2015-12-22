@@ -1,4 +1,5 @@
 <?php
+$lang['add_option']			= "新建";
 $lang['save']			= "保存";
 $lang['close']			= "关闭";
 $lang['title']			= "标题";

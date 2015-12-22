@@ -54,7 +54,7 @@ class ajax extends My_Controller {
                 $imageSave = imagejpeg($source, $imgName . '.' . $type,100);
                 $target = $this->generateThumbnail($imgName,$type);
 		
-		header('Content-Type: application/json');
+				header('Content-Type: application/json');
                 echo  $plain_name . '_thumb.' . $type;
             }
             catch(Exception $e){

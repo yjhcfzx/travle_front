@@ -113,6 +113,7 @@
               new_item.find('.chzn-select').chosen({ width: '100%',
                   create_option: true,
                 persistent_create_option: true,
+                create_option_text : '<?php echo $this->lang->line('add_option'); ?>',
                 skip_no_results: true });
           }
     }
@@ -167,6 +168,7 @@
         });
        $('.chzn-select').chosen({
             create_option: true,
+            create_option_text : '<?php echo $this->lang->line('add_option'); ?>',
              persistent_create_option: true,
     
          skip_no_results: true
