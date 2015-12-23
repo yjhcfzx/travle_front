@@ -27,7 +27,7 @@ function saveBase64(src, url){
 		data: { 
                         'request':{'src':src}
                     },
-		dataType: "text"
+		dataType: "json"
 		}).done(function(data){
 			if(!data){
 				return false;
@@ -42,11 +42,16 @@ function saveBase64(src, url){
 
   function insert_picture(src,target){
 
-       var new_src = saveBase64(src, base_url + "ajax/image");
-
+       var data = saveBase64(src, base_url + "ajax/image");
+       if(data['status'] == 200){
+       var new_src  = data['msg'];
        var content = $(target).html();
        content += "<img style='max-width:600px;max-height:600px' src='" + base_upload_url + new_src + "' />";
        $(target).html(content);
+        }
+        else{
+            alert('请选择正确的图片');
+        }
    }
    
   function readURL(input, target, callback) {

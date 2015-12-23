@@ -36,8 +36,13 @@ class ajax extends My_Controller {
         
         public function image()
 	{
+            header('Content-Type: application/json');
             try{
 		$request = isset($_POST ['request']) ? $_POST ['request'] : array();
+                if(!isset($request['src'])){
+                     $rst = array('status'=>'400', 'msg'=>'invalid image');
+                     echo json_encode($rst);die;
+                }
                 $src = $request['src'];
                 $index = strpos($src, 'base64,') + 7;
                 
@@ -53,13 +58,12 @@ class ajax extends My_Controller {
                 $imgName = $this->config->item( 'base_upload_path') . $plain_name;
                 $imageSave = imagejpeg($source, $imgName . '.' . $type,100);
                 $target = $this->generateThumbnail($imgName,$type);
-		
-				header('Content-Type: application/json');
-                echo  $plain_name . '_thumb.' . $type;
+                $rst = array('status'=>'200', 'msg'=>$plain_name . '_thumb.' . $type);
+                echo json_encode($rst);die;
             }
             catch(Exception $e){
-                header('Content-Type: application/json');
-                echo $e->getMessage();
+                $rst = array('status'=>'500', 'msg'=>$e->getMessage());
+                echo json_encode($rst);die;
             }
 		//return $data;
 		

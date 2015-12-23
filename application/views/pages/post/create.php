@@ -12,7 +12,7 @@
             </div>-->
 <div class='fieldset'>
      <?php echo my_generate_legend('itinerary');?>
-    
+    <div class="field-section">
  <?php echo my_generate_controller(array('name'=>'travle_start_time','label'=>'travle_start_time','type'=>'text',
           'attribute'=>array('input_wrapper_class'=>'date ', 'class'=>'date-picker'),//input-group
           'option'=>array(
@@ -39,9 +39,11 @@
 
 </div>
 </div><!--end itineary conainer-->
+    </div><!--end field section-->
 </div>
 <div class='fieldset'>
     <?php echo my_generate_legend('post_content');?>
+    <div class="field-section">
   <?php echo my_generate_controller(array('name'=>'title','label'=>'title','type'=>'text'));?>
   
    <?php echo my_generate_controller(array('name'=>'prepare_content','label'=>'prepare_content','type'=>'textarea'));?>
@@ -49,10 +51,11 @@
      <?php echo my_generate_controller(array('name'=>'travle_tip','label'=>'travle_tip','type'=>'textarea'));?>
     <div class="breaker40"></div>
    <?php echo my_generate_controller(array('name'=>'post_content','label'=>'post_content','type'=>'textarea'));?>
-   
+    </div>
 </div>
 <div class='fieldset'>
     <?php echo my_generate_legend('other');?>
+    <div class="field-section">
  <?php 
         $options = array();
         if(!isset($event['error'])){ foreach($event as $item){
@@ -64,6 +67,7 @@
               'options'=>$options
               )));?>
 <!--   <textarea cols="80" id="content" name="content" rows="10">place holder 1</textarea>-->
+    </div>
 </div>
    <div class="form-group">
         <!-- Button -->
@@ -189,5 +193,12 @@
 
                         
                         $('#itinerary_1').hide();
+                        
+                        $('.legend').click(function(){
+                            var $self = $(this).parent('.fieldset').find('.field-section');
+                            
+                           // $('.fieldset').find('.field-section').slideUp();
+                            $self.slideToggle();
+                        });
     });
     </script>
