@@ -46,7 +46,14 @@
                                         </div>
 				    	<div class="col-lg-10 col-md- col-sm-8 col-xs-8 list-main"> 
 					    	  <div class = 'row address'>	
-					    		<?php echo isset($product['content']) ? strip_tags($product['content']) : ''; ?>
+                                                        <?php if(isset($product['content'])){
+                                                            $content = strip_tags($product['content']) ;
+                                                            if(mb_strlen($content) > 300){
+                                                                $content = mb_substr($content, 0, 300);
+                                                                $content .= '。。。';
+                                                            }
+                                                            echo $content;
+                                                        }  ?>
 					    	  </div>
 				    	</div>
 				    </div>
