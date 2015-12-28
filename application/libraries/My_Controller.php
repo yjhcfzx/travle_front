@@ -97,6 +97,7 @@ abstract class My_Controller extends CI_Controller
         $current_url = $router . '/' . $action;
         //$this->session->unset_userdata('user');
         $current_user = $this->session->userdata('user');
+        $url_string =  uri_string();
         $exception_arr = array(
         		'user/login',
         		'user/register',
@@ -106,8 +107,9 @@ abstract class My_Controller extends CI_Controller
                         'post/detail'
         		
         );
+        $url_string = $_SERVER['QUERY_STRING'] ? $url_string.'?'.$_SERVER['QUERY_STRING'] : $url_string;
         if(!in_array($current_url , $exception_arr)){
-        	$this->session->set_userdata('current_url', uri_string());
+        	$this->session->set_userdata('current_url', $url_string);
         }
         if(!$current_user  && !in_array($current_url , $exception_arr)){
         	//redirect('../user/login', 'refresh');

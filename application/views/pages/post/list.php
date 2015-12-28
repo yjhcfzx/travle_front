@@ -6,6 +6,14 @@
     }
 </style>
 <div class="container-fluid">
+    <div id="searchbox">
+        <form id="search-form" method="post">
+        <div class="input-group">
+            <span onclick="searchPost();" class="input-group-addon" id="basic-addon1"><span style='margin-left:3px;position:relative;top:2px;' class="glyphicon glyphicon-search"></span></span>
+            <input <?php if(isset($_POST['keyword']) ){ echo " value='{$_POST['keyword']}' " ;}?> type="text"  name="keyword" class="form-control" placeholder="<?php echo $this->lang->line('keyword');?>" aria-describedby="basic-addon1">
+        </div>
+        </form>
+    </div>
     <div id='popular'>
         <h2><?php echo $this->lang->line('recent_hot'); ?></h2>
     </div>
@@ -50,6 +58,9 @@
 	    </div>
     </div>
 <script>
+    function searchPost(){
+        $('#search-form').submit();
+    }
 $('.list-item').hover(function(){
     $(this).removeClass('panel-warning').addClass('panel-primary');
 }, function(){

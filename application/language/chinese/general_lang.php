@@ -10,6 +10,7 @@ $lang['travle_end_time']			= "返程时间";
 $lang['post']			= "攻略";
 $lang['resource']			= "资源";
 $lang['list']			= "列表";
+$lang['keyword']			= "关键词";
 $lang['my_profile']			= "我的游局";
 $lang['profile']			= "个人信息";
 $lang['create_post']			= "新建攻略";

@@ -19,10 +19,21 @@ class post extends My_Controller {
 	 */
 	public function index()
         {
+            if($_POST){
+               $is_search = true;
+               if(isset($_POST['keyword'])){
+                   $keyword = $_POST['keyword'];
+               }
+            }
             
             $request_url = $this->data['router'] . '/list/format/json';
-            $resp = my_api_request($request_url , $method = 'get', $param = array());
+            $param = array();
+            if(isset($keyword)){
+                $param['keyword'] = $keyword;
+            }
+            $resp = my_api_request($request_url , 'get', $param);
             $resp = json_decode($resp,true);
+            
             if(isset($resp['error']))
 		{
 			$this->data['error'] = $resp['error'];
@@ -60,10 +71,10 @@ class post extends My_Controller {
             if(isset($_POST['submit']) && $_POST['submit']){
                 $comment_content = $_POST['comment'];
                 $request_url =  'comment/detail/format/json';
-                $resp = my_api_request($request_url , $method = 'post', $param = array('content'=>$comment_content,'post_id'=>$id));
+                $resp = my_api_request($request_url ,  'post', $param = array('content'=>$comment_content,'post_id'=>$id));
             }
             $request_url = $this->data['router'] . '/detail/format/json';
-            $resp = my_api_request($request_url , $method = 'get', $param = array('id'=>$id));
+            $resp = my_api_request($request_url ,  'get', $param = array('id'=>$id));
             $resp = json_decode($resp,true);
             if(isset($resp['error']))
 		{
@@ -80,7 +91,7 @@ class post extends My_Controller {
 	    	$this->data['items'] = $resp;
                 $this->data['is_author'] = $is_author;
                 $request_url =  'comment/list/format/json';
-                $resp = my_api_request($request_url , $method = 'get', $param = array('post_id'=>$id));
+                $resp = my_api_request($request_url ,  'get', $param = array('post_id'=>$id));
                 $resp = json_decode($resp,true);
                 if(isset($resp['error']))
 		{

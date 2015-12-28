@@ -151,4 +151,5 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
 }
 .you-p{
     padding:15px;
+    border:1px solid #eee;
 }
