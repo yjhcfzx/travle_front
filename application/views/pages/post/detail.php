@@ -42,19 +42,19 @@
     </div>
     <div class="you_section">
     <label class="control-label"> <?php echo $this->lang->line('prepare_content'); ?>   </label>
-     <div class="you-p">
+     <div class="you-p row">
          <?php  echo $items['prepare_content']; ?>
      </div>
     </div>
     <div class="you_section">
     <label class="control-label"> <?php echo $this->lang->line('travle_tip'); ?>   </label>
-     <div class="you-p">
+     <div class="you-p row">
          <?php  echo $items['travle_tip']; ?>
      </div>
     </div>
      <div class="you_section">
     <label class="control-label"> <?php echo $this->lang->line('post_content'); ?>   </label>
-     <div class="you-p">
+     <div class="you-p row">
          <?php  echo $items['content']; ?>
      </div>
     </div>
