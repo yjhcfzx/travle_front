@@ -45,11 +45,11 @@
                                         <?php if($imgOfText){ echo "<img class='thumbnail-img' src='{$imgOfText}' />";}?>
                                         </div>
 				    	<div class="col-lg-10 col-md- col-sm-8 col-xs-8 list-main"> 
-					    	  <div class = 'row address'>	
+					    	  <div class = 'address'>	
                                                         <?php if(isset($product['content'])){
                                                             $content = strip_tags($product['content']) ;
-                                                            if(mb_strlen($content) > 300){
-                                                                $content = mb_substr($content, 0, 300);
+                                                            if(mb_strlen($content) > 150){
+                                                                $content = mb_substr($content, 0, 150);
                                                                 $content .= '。。。';
                                                             }
                                                             echo $content;
