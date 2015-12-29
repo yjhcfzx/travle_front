@@ -104,6 +104,7 @@ var base_upload_url = "<?php echo $this->config->item('base_upload_url');?>";
       </div>
     </div>
      <div class='page-content'>
+        <?php echo my_generate_bread($this);?>
         <div class="row">
            <div class="col-lg-2 col-md-2 hidden-xs hidden-sm"><?php include 'left_side_bar.php';?></div>
             <div class="col-lg-8 col-md-8 col-sm-12"col-xs-12>

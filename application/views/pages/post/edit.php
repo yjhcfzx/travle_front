@@ -1,4 +1,4 @@
- <?php echo my_generate_bread('edit_post');?>
+
 <div id="container">
   <form method="post">
 

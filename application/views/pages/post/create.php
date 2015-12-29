@@ -1,4 +1,3 @@
- <?php echo my_generate_bread('create_post');?>
 <div id="container">
   <form method="post">
 
@@ -87,7 +86,7 @@
 
 <script>
         
-    var main_img = "<?php echo $items['main_image'] ? $items['main_image'] : ''; ?>";
+    var main_img = "";
     function ajaxSetMainImage(img){
         if(img){
             main_img = img;

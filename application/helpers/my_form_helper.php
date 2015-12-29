@@ -101,12 +101,37 @@ if (!function_exists('my_generate_legend')) {
 
 if (!function_exists('my_generate_bread')) {
 
-    function my_generate_bread($name) {
+    function my_generate_bread($inst) {
         $CI = & get_instance();
+        $route = $inst->uri->segment(1);
+        $method = $inst->uri->segment(2);
+        if(!$method){
+            $method = 'index';
+        }
+        $action = '';
+        $url = parse_url($_SERVER['REQUEST_URI']);
+        if($url && isset($url['query'])){
+            parse_str($url['query'], $params);
+            if(isset($params['action'])){
+                $action = $params['action'];
+            }
+        }
         $html = ' <ol class="breadcrumb">
-        <li><a href="' . $CI->config->item('base_url') . '">' .  $CI->lang->line('home') . '</a></li>
-  <li class="active">' . $CI->lang->line($name)  . '</li>
-</ol>';
+        <li><a href="' . $CI->config->item('base_url') . '">' .  $CI->lang->line('home') . '</a></li>';
+        if($method == 'index'){
+           $html .= '   <li class="active">' . $CI->lang->line($route . '_list')  . '</li>';
+        }
+        else{ 
+            $seg =  $inst->uri->segment(3);
+            $html .= '<li><a href="' . $CI->config->item('base_url') . $route . '">' .  $CI->lang->line($route . '_list') . '</a></li>';
+            if($action == 'edit'){
+                $html .= '<li><a href="' . $CI->config->item('base_url') . $route . '/' .$method . ($seg? '/' . $seg : '') . '">' .  $CI->lang->line($route . '_' . $method) . '</a></li>';
+                $html .= '   <li class="active">' . $CI->lang->line($route . '_' . $action)  . '</li>';
+            }else{
+                 $html .= '   <li class="active">' . $CI->lang->line($route .'_' .$method)  . '</li>';
+            }
+        }
+        $html .= '</ol>';
         return $html;
     }
 }
