@@ -40,13 +40,22 @@ function saveBase64(src, url){
                         return rst;
 }
 
+function setMainImage(ele){
+    var $ele = $(ele);
+    var img = $ele.parent('.inserted-img-container').find('img').attr('src');
+    var main_img_url = img.substring(img.lastIndexOf('/') + 1);
+    alert(main_img_url);
+    if (typeof ajaxSetMainImage == 'function') { 
+         ajaxSetMainImage(main_img_url); 
+    }
+}
   function insert_picture(src,target){
 
        var data = saveBase64(src, base_url + "ajax/image");
        if(data['status'] == 200){
        var new_src  = data['msg'];
        var content = $(target).html();
-       content += "<img class='inserted-img' src='" + base_upload_url + new_src + "' />";
+       content += "<span class='inserted-img-container'><span class='set-main-img' onclick='setMainImage(this);'><button type='button'>设为主图</button></span><img class='inserted-img' src='" + base_upload_url + new_src + "' /><span>";
        $(target).html(content);
         }
         else{

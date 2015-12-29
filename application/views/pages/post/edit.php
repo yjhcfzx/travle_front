@@ -109,7 +109,12 @@
 
 
 <script>
-        
+    var main_img = "<?php echo $items['main_image'] ? $items['main_image'] : ''; ?>";
+    function ajaxSetMainImage(img){
+        if(img){
+            main_img = img;
+        }
+    }    
  
     function generateItinerary(){
           var end_date =  $('#travle_end_time').val();
@@ -146,7 +151,7 @@
     }
     }
     $(document).ready(function(){
-        
+      
         $('#travle_end_time,#travle_start_time').change(function(){
                 generateItinerary();
         });
@@ -175,6 +180,9 @@
                    'travle_tip':$('#travle_tip').html(),
                  'itinerary': itinerary,
             };
+            if(main_img){
+                request['main_image'] = main_img;
+            }
             $.ajax({
 		async:false,
 		url: "<?php echo $this->config->item('base_url');?>ajax",

@@ -81,6 +81,19 @@ class post extends My_Controller {
 			$this->data['error'] = $resp['error'];
 		}
 	    else {
+                $imgOfText = null;
+                if ($resp['main_image']) {
+                $imgOfText =  $resp['main_image'];
+                } else if ($resp['content']) {
+                    $doc = new DOMDocument();
+                    $doc->loadHTML($resp['content']);
+                    $img = $doc->getElementsByTagName('img')->item(0);
+                    if ($img) {
+                        $imgOfText = $img->getAttribute('src');
+                        $imgOfText = substr($imgOfText, strrpos($imgOfText, '/') + 1 );
+                    }
+                }
+                $this->data['main_image'] = $imgOfText;
                 $author_id = $resp['uid'];
                 if(isset($this->data['user']) && $this->data['user']['id'] == $author_id){
                     $is_author = TRUE;
@@ -93,7 +106,7 @@ class post extends My_Controller {
                 $request_url =  'comment/list/format/json';
                 $resp = my_api_request($request_url ,  'get', $param = array('post_id'=>$id));
                 $resp = json_decode($resp,true);
-                if(isset($resp['error']))
+            if(isset($resp['error']))
 		{
 			$resp = null;
 		}

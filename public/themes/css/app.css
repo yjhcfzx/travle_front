@@ -117,7 +117,7 @@ padding: 0 !important;
 .btn.full-width{width:100%;}
 .list-item.header{font-weight:bold;}
 .thumbnail-img{
-    max-width: 80%;
+    max-width: 100%;
 }
 .textarea{
     padding:10px;
@@ -155,4 +155,24 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
 }
 .inserted-img{
     max-width:100%;max-height:600px
+}
+.textarea .inserted-img-container{
+    position:relative;
+}
+.set-main-img{
+    display:none;
+}
+.textarea .inserted-img-container:hover .set-main-img{
+   display:inline-block;
+   position: absolute;
+   z-index: 9999;
+    cursor:pointer;
+    left:0px;
+    padding:5px;
+}
+.banner-img{
+    width:100%;
+    max-height:400px;
+    border: #eee outset 2px;
+    border-radius: 15px;
 }

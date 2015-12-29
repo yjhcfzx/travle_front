@@ -1,5 +1,8 @@
 <div id="container">
-    <h1><?php  echo $items['title'];?></h1>
+    <?php if($items['main_image']):?>
+    <img class='banner-img' src="<?php echo $this->config->item( 'base_upload_url')  , $items['main_image'];?>" />
+    <?php endif;?>
+    <h1 class='title'><?php  echo $items['title'];?></h1>
     <div class="you_section">
       <span style='position:relative;top:2px;' class="glyphicon glyphicon-user"></span> <?php echo  $items['author'];?> <span style='margin-left:10px;position:relative;top:2px;' class="glyphicon glyphicon-pencil"></span> <?php echo $items['created_at'];?>
        
@@ -125,16 +128,7 @@
 
 				// Replace the <textarea id="editor"> with an CKEditor
 				// instance, using default configurations.
-		var editor =		CKEDITOR.replace( 'content',
-                {
-                    language : 'zh-cn',
-                    filebrowserBrowseUrl :'<?php echo $this->config->item('base_theme_url');?>js/ckeditor/filemanager/browser/default/browser.html?Connector=<?php echo $this->config->item( "ckeditor_connector_url");?>',
-                    filebrowserImageBrowseUrl : '<?php echo $this->config->item('base_theme_url');?>js/ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=<?php echo $this->config->item( "ckeditor_connector_url");?>',
-                    filebrowserFlashBrowseUrl :'<?php echo $this->config->item('base_theme_url');?>js/ckeditor/filemanager/browser/default/browser.html?Type=Flash&Connector=<?php echo $this->config->item( "ckeditor_connector_url");?>',
-					filebrowserUploadUrl  :'<?php echo $this->config->item( "ckeditor_upload_url");?>?Type=File',
-					filebrowserImageUploadUrl : '<?php echo $this->config->item( "ckeditor_upload_url");?>?Type=Image',
-					filebrowserFlashUploadUrl : '<?php echo $this->config->item( "ckeditor_upload_url");?>?Type=Flash'
-				});
+		
 
 			//]]>
     });

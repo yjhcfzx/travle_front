@@ -28,7 +28,10 @@
 	    else{
 	    foreach($items as $product): 
                 $imgOfText = NULL;
-                if($product['content']){
+            if($product['main_image']){
+                $imgOfText = $this->config->item( 'base_upload_url')  . $product['main_image'];
+            }
+              else  if($product['content']){
                 $doc = new DOMDocument();
                 $doc->loadHTML($product['content']);
                 $img = $doc->getElementsByTagName('img')->item(0);
@@ -39,9 +42,7 @@
 	       		<div class="panel-body">
 				    <div class = 'row'>
 				    	<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
-<!--				    	<img style='max-width:100%' src="<?php echo isset($product['img']) ?
-				    	 $this->config->item( 'cdn_url_upload_img') .'product/' .  $product['img'] 
-				    	: '';?>">-->
+
                                         <?php if($imgOfText){ echo "<img class='thumbnail-img' src='{$imgOfText}' />";}?>
                                         </div>
 				    	<div class="col-lg-10 col-md- col-sm-8 col-xs-8 list-main"> 
