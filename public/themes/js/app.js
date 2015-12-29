@@ -77,7 +77,14 @@ function setMainImage(ele){
     }
 
 $(document).ready(function(){
-	
+	// Chosen touch support.
+    if ($('.chosen-container').length > 0) {
+      $('.chosen-container').on('touchstart', function(e){
+        e.stopPropagation(); e.preventDefault();
+        // Trigger the mousedown event.
+        $(this).trigger('mousedown');
+      });
+    }
 	/*var current_page = getHash() || default_page;
 	$('#nav-item-' + current_page).addClass('active');
 	var docHeight = $(document).height();
