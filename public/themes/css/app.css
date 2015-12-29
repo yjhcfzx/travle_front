@@ -177,3 +177,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
     border: #eee outset 2px;
     border-radius: 15px;
 }
+.banner-container{
+    position:relative;
+}
+.title-overlay{
+    height:75px;
+    width:100%;
+    background:#333;
+    opacity: 0.4;
+    z-index:9;
+    position: absolute;
+    bottom:1px;
+    border-radius: 15px;
+}
+.title.overlay{
+    color:#fff;
+    position:absolute;
+    bottom:10px;
+    padding-left:10px;
+    z-index:10;
+    height:38px;
+    overflow:hidden;
+}

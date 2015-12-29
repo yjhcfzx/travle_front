@@ -1,8 +1,12 @@
 <div id="container">
+    <div class="banner-container">
     <?php if($main_image):?>
     <img class='banner-img' src="<?php echo $this->config->item( 'base_upload_url')  , $main_image;?>" />
+    <div class="title-overlay hidden-sm hidden-xs"></div>
     <?php endif;?>
-    <h1 class='title'><?php  echo $items['title'];?></h1>
+    <h1 class='title hidden-sm hidden-xs <?php  if($main_image){echo ' overlay ';}?>'><?php  echo $items['title'];?></h1>
+    <h1 class='title hidden-md hidden-lg'><?php  echo $items['title'];?></h1>
+    </div><!--close banner container-->
     <div class="you_section">
       <span style='position:relative;top:2px;' class="glyphicon glyphicon-user"></span> <?php echo  $items['author'];?> <span style='margin-left:10px;position:relative;top:2px;' class="glyphicon glyphicon-pencil"></span> <?php echo $items['created_at'];?>
        
