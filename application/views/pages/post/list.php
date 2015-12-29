@@ -14,9 +14,7 @@
         </div>
         </form>
     </div>
-    <div id='popular'>
-        <h2><?php echo $this->lang->line('recent_hot'); ?></h2>
-    </div>
+    
 	    <div class='product-list'>
 	    <?php 
 	    if(isset($error)){
@@ -41,11 +39,11 @@
 						    	  		<?php echo $product['travle_start_time']?></div>
 	       		<div class="panel-body">
 				    <div class = 'row'>
-				    	<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
+				    	<div class="col-lg-3 col-md-4 col-sm-4 col-xs-5">
 
                                         <?php if($imgOfText){ echo "<img class='thumbnail-img' src='{$imgOfText}' />";}?>
                                         </div>
-				    	<div class="col-lg-10 col-md- col-sm-8 col-xs-8 list-main"> 
+				    	<div class="col-lg-9 col-md-8 col-sm-8 col-xs-7 list-main"> 
 					    	  <div class = 'address'>	
                                                         <?php if(isset($product['content'])){
                                                             $content = strip_tags($product['content']) ;

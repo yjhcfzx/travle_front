@@ -103,7 +103,11 @@ var base_upload_url = "<?php echo $this->config->item('base_upload_url');?>";
         </div><!--/.nav-collapse -->
       </div>
     </div>
-    <div class='page-content'>
+     <div class='page-content'>
+        <div class="row">
+           <div class="col-lg-2 col-md-2 hidden-xs hidden-sm"><?php include 'left_side_bar.php';?></div>
+            <div class="col-lg-8 col-md-8 col-sm-12"col-xs-12>
+                <div class='page-middle-content'>
     	
     
  	

@@ -1,6 +1,6 @@
 <div id="container">
-    <?php if($items['main_image']):?>
-    <img class='banner-img' src="<?php echo $this->config->item( 'base_upload_url')  , $items['main_image'];?>" />
+    <?php if($main_image):?>
+    <img class='banner-img' src="<?php echo $this->config->item( 'base_upload_url')  , $main_image;?>" />
     <?php endif;?>
     <h1 class='title'><?php  echo $items['title'];?></h1>
     <div class="you_section">
