@@ -1,5 +1,5 @@
 <div id="container">
-  <form method="post">
+  <form method="post" class="validator">
 
 <!--       <div class="form-group">
                 <label for="dtp_input2" class="control-label"><?php echo $this->lang->line('travle_time'); ?></label>
@@ -63,6 +63,7 @@
       echo my_generate_controller(array('name'=>'special_event','label'=>'special_event','type'=>'select',
           'attribute'=>array('multiple'=>TRUE,
               'placeholder'=>'choose_or_create',
+              'required'=>'not_required',
               'options'=>$options
               )));?>
 <!--   <textarea cols="80" id="content" name="content" rows="10">place holder 1</textarea>-->
@@ -113,6 +114,7 @@
               new_item.removeAttr('id').attr('id', 'itinerary_' + (i +2 ));
               var new_date =  new Date();
               new_date.setDate(date1.getDate()+1 + i);
+              new_item.attr('name', 'destination_' + (2 + i) + '[]')
               new_item.find('#destination_1').removeAttr('id').attr('id', 'destination_' + (i +2 )).removeAttr('value');
               new_item.find('.itinerary_index').html('D' + (i + 2));             
               new_item.find('.itinerary_time').html('(' + new_date.yyyymmdd() + ')');
@@ -122,7 +124,7 @@
                   create_option: true,
                 persistent_create_option: true,
                 create_option_text : '<?php echo $this->lang->line('add_option'); ?>',
-                skip_no_results: true });
+                skip_no_results: true }).change(function(){$(this).valid()});
           }
     }
     }
@@ -133,12 +135,20 @@
         });
         $('#save').click(function(event ){
             event.preventDefault();
+            $('form.validator').validate(validator_settings);
+            var is_valid = $('form.validator').valid();
+            if(!is_valid){
+                return false;
+            }
+            
             var destination_arr = [];
             var itinerary = [];
             $('#itinerary_container .itinerary').each(function(item){
                 var values = $(this).find('select.form-control').val(); 
-                itinerary.push( values.join(','));
-                destination_arr = destination_arr.concat(values);
+                if(values){
+                    itinerary.push( values.join(','));
+                    destination_arr = destination_arr.concat(values);
+                }
                
             });
             itinerary = itinerary.join('#');
@@ -183,7 +193,7 @@
              persistent_create_option: true,
     
          skip_no_results: true
-       });
+       }).change(function(){$(this).valid()});
       
        
          $('.date-picker').datetimepicker({
@@ -196,6 +206,9 @@
 		startView: 2,
 		minView: 2,
 		forceParse: 0
+    }).on('change', function() {
+        $(this).valid();  // triggers the validation test
+        // '$(this)' refers to '$("#datepicker")'
     });
 
                         

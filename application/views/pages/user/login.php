@@ -4,7 +4,7 @@
                 <?php echo validation_errors(); ?>
                 <?php if (isset($error)) var_dump($error); ?>
                 <?php
-                $attributes = array('class' => $router . '_' . $action, 'id' => $router . '_' . $action);
+                $attributes = array( 'class' => 'validator ' . $router . '_' . $action, 'id' => $router . '_' . $action);
                 echo form_open("../$router/$action", $attributes);
                 ?>
 
@@ -13,25 +13,15 @@
 
                 <!-- Prod Info-->
  <div class="control-group" style="max-width:600px;margin:0 auto;">
-                <div class="form-group">
-                    <!-- Text input-->
-                    <label class="control-label col-sm-4" for="username"><?php echo $this->lang->line('username'); ?></label>
-                    <div class="controls col-sm-8">
-                        <input type="text"  class="input-xlarge required" name='username' id='username'  value=''>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <!-- category-->
-                    <label class="control-label col-sm-4" for="phone"><?php echo $this->lang->line('password'); ?></label>
-                    <div class="controls col-sm-8">
-                        <input type="password"  class="input-xlarge required" name='password' id='password' value=''>
-                    </div>
-                </div>
+                  <?php echo my_generate_controller(array('name'=>'username','label'=>'username','type'=>'text',
+                              'attribute'=>array('required'=>'required')));?>
+                 <?php echo my_generate_controller(array('name'=>'password','label'=>'password','type'=>'password',
+                              'attribute'=>array('required'=>'required')));?>
 
                 <div class="form-group">
                     <!-- Button -->
                     <div class="controls">
-                        <button id='submit' class="btn btn-success"><i class="icon-white icon-hand-right"></i> <?php echo $this->lang->line('submit'); ?></button>
+                        <button type="submit" id='submit' class="btn btn-success"><i class="icon-white icon-hand-right"></i> <?php echo $this->lang->line('submit'); ?></button>
                     </div>
                 </div>
  </div>
@@ -39,67 +29,11 @@
 
                 </form>
                 </div>
-                <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+                
                 <script>
-                    var validator_messages = {
-                        'username': {
-                            required: "<?php echo $this->lang->line('required_error') . $this->lang->line('username'); ?>"
-                        },
-                        'password': {
-                            required: "<?php echo $this->lang->line('required_error') . $this->lang->line('password'); ?>"
-                        }
-                    };
-
-                    function validator_show_errors(errorMap, errorList, form) {
-
-                        jQuery('label.ton-error').remove();
-
-                        for (var i in errorMap) {
-
-                            var rst = errorMap[i];
-
-                            console.log(i, ":", rst);
-
-                            var selector = i.replace(/\[/ig, '');
-
-                            selector = selector.replace(/\]/ig, '');
-
-
-
-                            switch (i)
-
-                            {
-                                default:
-                                    $('#' + i).after('<label class="error my-error for_' + selector + '">' + rst + '</label>');
-
-                                    break;
-
-                            }
-
-                        }
-
-                    }
+                 
                     $(document).ready(function () {
-                        var add_validator = jQuery('#<?php echo $router . "_" . $action; ?>').validate({
-                            ignore: "",
-                            onkeyup: false, //function(element) {},
-
-                            onfocusout: false,
-                            messages: validator_messages,
-                            showErrors: function (errorMap, errorList)
-
-                            {
-
-                                validator_show_errors(errorMap, errorList, '#<?php echo $router . "_" . $action; ?>');
-
-                            },
-                            submitHandler: function (form) {
-
-                                form.submit();
-
-                            },
-                        });
-
+                    
 
                     });
                 </script>

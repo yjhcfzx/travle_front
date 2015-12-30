@@ -85,6 +85,8 @@ $(document).ready(function(){
         $(this).trigger('mousedown');
       });
     }
+    
+    
 	/*var current_page = getHash() || default_page;
 	$('#nav-item-' + current_page).addClass('active');
 	var docHeight = $(document).height();

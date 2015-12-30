@@ -9,7 +9,7 @@
                     <?php echo validation_errors(); ?>
                     <?php if (isset($error)) var_dump($error); ?>
                     <?php
-                    $attributes = array('class' => $router . '_' . $action, 'id' => $router . '_' . $action);
+                    $attributes = array('class' => 'validator ' . $router . '_' . $action, 'id' => $router . '_' . $action);
                     echo form_open("../$router/$action", $attributes);
                     ?>
 
@@ -19,34 +19,17 @@
                     <!-- Prod Info-->
 
                     <div class="control-group" style="max-width:600px;margin:0 auto;">
-                        <div class="form-group">
-                            <!-- Text input-->
-                            <label class="control-label col-sm-4" for="name"><?php echo $this->lang->line('name'); ?></label>
-                            <div class="controls col-sm-8">
-                                <input type="text" class="input-xlarge required" name='name' id='name'  value=''>
-                            </div>
-                        </div>
+                          <?php echo my_generate_controller(array('name'=>'name','label'=>'name','type'=>'text',
+                              'attribute'=>array('required'=>'required')));?>
                         <!-- Text input-->
-                        <div class="form-group">
-                            <label class="control-label  col-sm-4" for="email"><?php echo $this->lang->line('email'); ?></label>
-                            <div class="controls  col-sm-8">
-                                <input type="text"  class="input-xlarge required" name='email' id='"email'  value=''>
-                            </div>
-                        </div>
+                         <?php echo my_generate_controller(array('name'=>'email','label'=>'email','type'=>'text',
+                              'attribute'=>array('required'=>'required')));?>
                         <!-- Text input-->
-                        <div class="form-group">
-                            <label class="control-label  col-sm-4" for="phone"><?php echo $this->lang->line('phone'); ?></label>
-                            <div class="controls col-sm-8">
-                                <input type="text"  class="input-xlarge required" name='phone' id='phone'  value=''>
-                            </div>
-                        </div>
+                         <?php echo my_generate_controller(array('name'=>'phone','label'=>'phone','type'=>'text',
+                              'attribute'=>array('required'=>'required')));?>
                         <!-- category-->
-                        <div class="form-group">
-                            <label class="control-label col-sm-4" for="phone"><?php echo $this->lang->line('password'); ?></label>
-                            <div class="controls col-sm-8 ">
-                                <input type="text"  class="input-xlarge required" name='password' id='password' value=''>
-                            </div>
-                        </div>
+                         <?php echo my_generate_controller(array('name'=>'password','label'=>'password','type'=>'password',
+                              'attribute'=>array('required'=>'required')));?>
                         <div class="form-group">
                             <!-- Button -->
                             <div class="controls">
@@ -59,44 +42,6 @@
                     </div>
                
                     <script>
-                           $('form').validate({
-        rules: {
-            name: {
-                minlength: 3,
-                maxlength: 15,
-                required: true
-            },
-            email: {
-                minlength: 3,
-                maxlength: 15,
-                required: true
-            }
-        },
-        messages: {
-            required:'去问问看',
-        firstname: "Enter your firstname",
-        lastname: "Enter your lastname",
-        username: {
-            required: "Enter a username",
-            minlength: jQuery.format("Enter at least {0} characters"),
-            remote: jQuery.format("{0} is already in use")
-        }
-    }
-        highlight: function(element) {
-            $(element).closest('.form-group').addClass('has-error');
-        },
-        unhighlight: function(element) {
-            $(element).closest('.form-group').removeClass('has-error');
-        },
-        errorElement: 'span',
-        errorClass: 'help-block',
-        errorPlacement: function(error, element) {
-            if(element.parent('.input-group').length) {
-                error.insertAfter(element.parent());
-            } else {
-                error.insertAfter(element);
-            }
-        }
-    });
+                         
                     </script>
 <?php endif; ?>

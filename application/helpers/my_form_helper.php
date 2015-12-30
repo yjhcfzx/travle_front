@@ -7,7 +7,7 @@ if (!function_exists('my_generate_controller')) {
 
     function my_generate_controller($contoller, $param = array()) {
         $CI = & get_instance();
-        $class = 'form-control  required';
+        $class = 'form-control';
         $type = $contoller['type'];
         $attribute = isset($contoller['attribute']) ? $contoller['attribute'] : array();
         $option = isset($contoller['option']) ? $contoller['option'] : array();
@@ -15,6 +15,13 @@ if (!function_exists('my_generate_controller')) {
         if (isset($attribute['class'])) {
             $class .= ' ' . $attribute['class'];
         }
+        
+        if (isset($attribute['required'])) {
+            $class .= ' ' .  $attribute['required'];
+        }else{
+            $class .=   ' required ';
+        }
+       
         $input_wrapper_class = isset($attribute['input_wrapper_class']) ? $attribute['input_wrapper_class'] : '';
 
         $label = $contoller['label'];
@@ -47,8 +54,10 @@ if (!function_exists('my_generate_controller')) {
             $html .= ' <div class="col-xs-12 col-sm-8 col-md-9 col-lg-10 ' . $input_wrapper_class . '">';
 
             switch ($type) {
+                case 'password':
                 case 'text':
-                    $element_html = ' <input class="' . $class . '"  name= "title" id="' . $name . '"  value="' . $value . '"/>';
+                    $element_html = ' <input type="' . $type  . '" class="' . $class . '"  name= "' . $name . '" id="' . $name . '"  value="' . $value . '" ' 
+                      . '/>';
                     break;
                 case 'select':
                     if ($value && !is_array($value)) {

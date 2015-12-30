@@ -1,6 +1,6 @@
 
 <div id="container">
-  <form method="post">
+  <form method="post" class="validator">
 
 <!--       <div class="form-group">
                 <label for="dtp_input2" class="control-label"><?php echo $this->lang->line('travle_time'); ?></label>
@@ -88,6 +88,7 @@
       echo my_generate_controller(array('name'=>'special_event','label'=>'special_event','type'=>'select','value'=>$selected_val,
           'attribute'=>array('multiple'=>TRUE,
               'placeholder'=>'choose_or_create',
+               'required'=>'not_required',
               'options'=>$options
               )));?>
 <!--   <textarea cols="80" id="content" name="content" rows="10">place holder 1</textarea>-->
@@ -146,7 +147,7 @@
                   create_option: true,
                   create_option_text : '<?php echo $this->lang->line('add_option'); ?>',
                 persistent_create_option: true,
-                skip_no_results: true });
+                skip_no_results: true }).change(function(){$(this).valid()});
           }
     }
     }
@@ -157,6 +158,11 @@
         });
         $('#save').click(function(event ){
             event.preventDefault();
+             $('form.validator').validate(validator_settings);
+            var is_valid = $('form.validator').valid();
+            if(!is_valid){
+                return false;
+            }
             var destination_arr = [];
             var itinerary = [];
             $('#itinerary_container .itinerary').each(function(item){
@@ -208,7 +214,7 @@
              persistent_create_option: true,
     
          skip_no_results: true
-       });
+       }).change(function(){$(this).valid()});
       
        
          $('.date-picker').datetimepicker({
@@ -221,7 +227,7 @@
 		startView: 2,
 		minView: 2,
 		forceParse: 0
-    });
+    }).change(function(){$(this).valid()});
 
                         <?php if(!isset($items['itinerary'])):?>
                         $('#itinerary_1').hide();
