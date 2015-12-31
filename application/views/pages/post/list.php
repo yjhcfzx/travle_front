@@ -1,10 +1,3 @@
-<style>
-    .list-item:hover{
-        cursor:pointer;
-        cursor:hand;
-        
-    }
-</style>
 <div class="container-fluid">
     <div id="searchbox">
         <form id="search-form" method="post">
@@ -34,10 +27,12 @@
                 $doc->loadHTML($product['content']);
                 $img = $doc->getElementsByTagName('img')->item(0);
                 if($img){$imgOfText = $img->getAttribute('src');}}?>
-	       <div class="list-item panel panel-warning" onclick='javascript:window.location.href = "<?php echo  $this->config->item('base_url');?>post/detail/<?php echo$product['id']; ?>";'>
-	            <div class="panel-heading"><?php echo $product['title']?> <span style='margin-left:3px;position:relative;top:2px;' class="glyphicon glyphicon-time"></span>
-						    	  		<?php echo $product['travle_start_time']?></div>
-	       		<div class="panel-body">
+	       <div class="list-item panel panel-warning">
+	            <div class="panel-heading"><a href="<?php echo  $this->config->item('base_url');?>post/detail/<?php echo $product['id']; ?>">
+                        <?php echo $product['title']?></a>
+                        <span class="you-glyphicon glyphicon glyphicon-time"></span>
+			<?php echo $product['travle_start_time']?></div>
+	       		<div class="panel-body" onclick='javascript:window.location.href = "<?php echo  $this->config->item('base_url');?>post/detail/<?php echo $product['id']; ?>";'>
 				    <div class = 'row'>
 				    	<div class="col-lg-3 col-md-4 col-sm-4 col-xs-5">
 
@@ -54,22 +49,51 @@
                                                             echo $content;
                                                         }  ?>
 					    	  </div>
+                                            <div class='read_more visible-sm visible-xs'>
+                                                <a href="<?php echo  $this->config->item('base_url');?>post/detail/<?php echo $product['id']; ?>">
+                                                    <button  type="button" class="btn btn-primary btn-sm">
+                                                        <i style='margin-left:3px;' class="you-glyphicon glyphicon glyphicon-hand-right"></i> 
+                                                      <?php echo $this->lang->line('read_more');?></button>
+                                               </a></div>
 				    	</div>
 				    </div>
 				</div>
- 		   		<div class="panel-footer"><span style='position:relative;top:2px;' class="glyphicon glyphicon-plane"></span>
-                                    <?php echo $product['destination'] ?><span style='margin-left:10px;position:relative;top:2px;' class="glyphicon glyphicon-user"></span> <?php echo  $product['author'];?> <span style='margin-left:10px;position:relative;top:2px;' class="glyphicon glyphicon-pencil"></span> <?php echo $product['created_at'];?></div>
+ 		   		<div class="panel-footer">
+                                    <span style='position:relative;top:2px;' class="glyphicon glyphicon-plane"></span>
+                                        <?php echo $product['destination'] ?>
+                                    <span class="you-glyphicon glyphicon glyphicon-user"></span> 
+                                    <a href="<?php echo $this->config->item( 'base_url') ,'user/detail/' ,$product['uid'];?>"><?php echo  $product['author'];?> </a>
+                                    <span  class="you-glyphicon glyphicon glyphicon-pencil"></span> 
+                                        <?php echo $product['created_at'];?>
+                                </div>
 	       </div>
 	       <?php endforeach;}?>
 	    </div>
     </div>
+<style>
+  .list-item  .panel-body:hover{
+        cursor: pointer;
+        cursor: hand;
+    }
+    .list-item  a{
+        color:#333;
+    }
+     .list-item:hover a{
+        color:#ee7337;
+    }
+    
+    .list-item.panel-primary .panel-heading a{
+       // color:#fff;
+       // text-decoration: underline;
+    }
+</style>
 <script>
     function searchPost(){
         $('#search-form').submit();
     }
-$('.list-item').hover(function(){
-    $(this).removeClass('panel-warning').addClass('panel-primary');
+$('.list-item .panel-body').hover(function(){
+    $(this).parent('.list-item').removeClass('panel-warning').addClass('panel-primary');
 }, function(){
-      $(this).removeClass('panel-primary').addClass('panel-warning');
+      $(this).parent('.list-item').removeClass('panel-primary').addClass('panel-warning');
 });
     </script>

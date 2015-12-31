@@ -19,10 +19,10 @@ class Welcome extends My_Controller {
 	 */
 	public function index()
 	{	
-		$path = //'../js/ckfinder';
-		$this->config->item( 'base_theme_url') . 'js/ckfinder/';
-		$width = '850px';
-		$this->editor($path, $width);
+		//$path = //'../js/ckfinder';
+		//$this->config->item( 'base_theme_url') . 'js/ckfinder/';
+		//$width = '850px';
+		//$this->editor($path, $width);
 		
 		
 		$this->load->view('templates/header',

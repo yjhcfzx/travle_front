@@ -107,8 +107,14 @@ abstract class My_Controller extends CI_Controller
                         'post/detail'
         		
         );
+        $forget_arr = array(
+        		'user/login',
+        		'user/register',
+                        'welcome/redirect',
+        		
+        );
         $url_string = $_SERVER['QUERY_STRING'] ? $url_string.'?'.$_SERVER['QUERY_STRING'] : $url_string;
-        if(!in_array($current_url , $exception_arr)){
+        if(!in_array($current_url , $forget_arr)){
         	$this->session->set_userdata('current_url', $url_string);
         }
         if(!$current_user  && !in_array($current_url , $exception_arr)){
@@ -119,6 +125,12 @@ abstract class My_Controller extends CI_Controller
         {
         	$this->data['user'] = $current_user;
         }
+        
+            $request_url = 'post/list/format/json';
+            $param = array('action'=>'recent');
+            $resp = my_api_request($request_url , 'get', $param);
+            $resp = json_decode($resp,true);
+            $this->data['recent_hot_post'] = $resp;
         
     }
 

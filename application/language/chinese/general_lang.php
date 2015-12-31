@@ -38,6 +38,7 @@ $lang['max_length']			= '最大长度为';
 $lang['fill_resource_p']			= "完善旅游资源 让需要帮助的驴友找到你";
 $lang['home']			= "首页";
 $lang['return_home']			= "返回首页";
+$lang['read_more']			= "查看详情";
 $lang['register_success']			= "您已完成注册";
 $lang['required_error']			= "请输入";
 $lang['uploadimage']			= "上传图片";
