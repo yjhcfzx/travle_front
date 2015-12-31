@@ -8,14 +8,7 @@
     <h1 class='title hidden-md hidden-lg'><?php  echo $items['title'];?></h1>
     </div><!--close banner container-->
     <div class="you_section">
-      <span style='position:relative;top:2px;' class="glyphicon glyphicon-user"></span> <?php echo  $items['author'];?> <span style='margin-left:10px;position:relative;top:2px;' class="glyphicon glyphicon-pencil"></span> <?php echo $items['created_at'];?>
-       
-            <span style='position:relative;top:2px;' class="glyphicon glyphicon-plane"></span>
-               <?php  if(isset($items['destination'])){
-         foreach($items['destination'] as $dest){
-             echo $dest['name'] , ' ';
-         }
-     } ?>
+       <?php echo my_generate_post_meta($items);?>
      
     <div class="you-row"> 
         <?php if($is_author){ echo "<span style='margin-right:5px;position:relative;top:2px;' class='glyphicon glyphicon-edit'></span><a href='?action=edit'>" . 

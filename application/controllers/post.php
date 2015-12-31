@@ -103,6 +103,7 @@ class post extends My_Controller {
                 }
 	    	$this->data['items'] = $resp;
                 $this->data['is_author'] = $is_author;
+                $this->data['page_title'] .= ' - ' . $resp['title'];
                 $request_url =  'comment/list/format/json';
                 $resp = my_api_request($request_url ,  'get', $param = array('post_id'=>$id));
                 $resp = json_decode($resp,true);

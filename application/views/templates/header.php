@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>我要浪</title>
+    <title>我要浪<?php  if(isset($page_title)&&$page_title){ echo ' | ' ,  $page_title;}?></title>
 <script>
 var base_url = "<?php echo $this->config->item('base_url');?>";
 var base_upload_url = "<?php echo $this->config->item('base_upload_url');?>";

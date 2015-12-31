@@ -81,7 +81,7 @@ abstract class My_Controller extends CI_Controller
 //         $logger = Logger::getLogger("main");
 //         $logger->info("This is an informational message.");
 //         $logger->warn("I'm not feeling so good...");
-        
+         $CI = & get_instance();
         $this->load->helper('api');
         $this->load->helper('my_form');
         $this->lang->load('general', 'chinese');
@@ -131,7 +131,32 @@ abstract class My_Controller extends CI_Controller
             $resp = my_api_request($request_url , 'get', $param);
             $resp = json_decode($resp,true);
             $this->data['recent_hot_post'] = $resp;
-        
+            
+            $route = $this->uri->segment(1);
+            $method = $this->uri->segment(2);
+            if(!$method){
+                $method = 'index';
+            }
+            $action = '';
+            $url = parse_url($_SERVER['REQUEST_URI']);
+            if($url && isset($url['query'])){
+                parse_str($url['query'], $params);
+                if(isset($params['action'])){
+                    $action = $params['action'];
+                }
+            }
+            $title = $route;
+            if($method == 'index'){
+                $title .= '_list'; 
+            }else{
+                 if($action == 'edit'){
+                     $title .= '_' . $action; 
+                 }else{
+                      $title .= '_' .$method;
+                 }
+            }
+             $this->data['page_title'] = $CI->lang->line($title);
+             
     }
 
 

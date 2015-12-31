@@ -59,12 +59,7 @@
 				    </div>
 				</div>
  		   		<div class="panel-footer">
-                                    <span style='position:relative;top:2px;' class="glyphicon glyphicon-plane"></span>
-                                        <?php echo $product['destination'] ?>
-                                    <span class="you-glyphicon glyphicon glyphicon-user"></span> 
-                                    <a href="<?php echo $this->config->item( 'base_url') ,'user/detail/' ,$product['uid'];?>"><?php echo  $product['author'];?> </a>
-                                    <span  class="you-glyphicon glyphicon glyphicon-pencil"></span> 
-                                        <?php echo $product['created_at'];?>
+                                    <?php echo my_generate_post_meta($product);?>
                                 </div>
 	       </div>
 	       <?php endforeach;}?>
