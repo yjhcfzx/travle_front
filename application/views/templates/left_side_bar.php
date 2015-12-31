@@ -16,6 +16,7 @@
     ?>
 <div class='sidebar-item'>
     <div class='title'><a href="<?php echo  $this->config->item('base_url');?>post/detail/<?php echo $p['id']; ?>"><?php echo $p['title']; ?></a></div>
+    <div class='grey-font'><span style='margin-left:0px;' class="you-glyphicon glyphicon glyphicon-time"></span><?php echo $p['travle_start_time'] , ' - ' , $p['travle_end_time'];?></div>
     <?php if(isset($imgOfText)):
        ?> 
     <img src='<?php echo $imgOfText; ?>'/>

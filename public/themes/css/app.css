@@ -228,7 +228,7 @@ a, a:hover{
    text-align: right;
 }
 .left_sidebar{
-    padding-right:20px;
+    padding-right:10%;
 }
 .sidebar img{
     max-width: 100%;
@@ -243,4 +243,8 @@ a, a:hover{
 .sidebar-item .title{
     margin-top:7px;
     margin-bottom:3px;
+}
+.grey-font{
+    color:#888;
+    font-size: 0.8em;
 }

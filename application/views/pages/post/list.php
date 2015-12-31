@@ -31,7 +31,7 @@
 	            <div class="panel-heading"><a href="<?php echo  $this->config->item('base_url');?>post/detail/<?php echo $product['id']; ?>">
                         <?php echo $product['title']?></a>
                         <span class="you-glyphicon glyphicon glyphicon-time"></span>
-			<?php echo $product['travle_start_time']?></div>
+			<?php echo $product['travle_start_time'] , ' - ' , $product['travle_end_time'];?></div>
 	       		<div class="panel-body" onclick='javascript:window.location.href = "<?php echo  $this->config->item('base_url');?>post/detail/<?php echo $product['id']; ?>";'>
 				    <div class = 'row'>
 				    	<div class="col-lg-3 col-md-4 col-sm-4 col-xs-5">
