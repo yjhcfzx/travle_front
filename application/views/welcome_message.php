@@ -5,9 +5,9 @@
       max-height:820px;
       margin: auto;
   }
-  .carousel-control{width:20%;}
+  .carousel-control{width:10%;}
 .glyphicon-chevron-right{right:15% !important;}
-.glyphicon-chevron-left{left:15% !important;}
+.glyphicon-chevron-left{left:25% !important;}
   </style>
 <div id="container">
     
