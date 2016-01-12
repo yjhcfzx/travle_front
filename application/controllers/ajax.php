@@ -47,7 +47,7 @@ class ajax extends My_Controller {
                 $index = strpos($src, 'base64,') + 7;
                 
                 $imageData = substr($src, $index);
-                
+                //base 64 image data
                 $imageData = base64_decode($imageData);
                 $source = imagecreatefromstring($imageData);
                 $f = finfo_open();
@@ -56,6 +56,7 @@ class ajax extends My_Controller {
                 $type = $type_arr[1];
                 $plain_name = uniqid('upload');
                 $imgName = $this->config->item( 'base_upload_path') . $plain_name;
+                //save image to upload path
                 $imageSave = imagejpeg($source, $imgName . '.' . $type,100);
                 $target = $this->generateThumbnail($imgName,$type);
                 $rst = array('status'=>'200', 'msg'=>$plain_name . '_thumb.' . $type);

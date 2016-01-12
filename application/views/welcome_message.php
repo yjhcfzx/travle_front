@@ -31,10 +31,10 @@
                 if($imgOfText){
                     $indicator .= ' <li data-target="#myCarousel" data-slide-to="' . $index . '" ' . (($index == 0) ? ' class="active"' : '') . '></li>';
                     $inner .= ' <div class="item ' . (($index == 0) ? ' active' : '') . '">
-      <img src="' . $imgOfText . '" alt="img">
+      <a href="' . $this->config->item('base_url') . 'post/detail/' . $p['id'] . '"><img src="' . $imgOfText . '" alt="img">
       <div class="carousel-caption">
         <h3>' . $p['title'] . '</h3>
-      </div>
+      </div></a>
     </div>';
                     $index++;
                 }
