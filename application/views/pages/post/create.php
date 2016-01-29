@@ -153,16 +153,17 @@
             });
             itinerary = itinerary.join('#');
             destination_arr = arrayUnique(destination_arr);
+             
             var request = {
                // 'content': editor.getData(),
-               'content': $('#post_content').html(),
+               'content': $('#post_content').find('.set-main-img').remove().end().html(),
                  'special_event': $('#special_event').val() ? $('#special_event').val().join(',') : '',
                  'destination': destination_arr ? destination_arr.join(',') : '',
                   'travle_start_time': $('#travle_start_time').val(),
                   'travle_end_time': $('#travle_end_time').val(),
                   'title': $('#title').val(),
-                  'prepare_content':$('#prepare_content').html(),
-                   'travle_tip':$('#travle_tip').html(),
+                  'prepare_content':$('#prepare_content').find('.set-main-img').remove().end().html(),
+                   'travle_tip':$('#travle_tip').find('.set-main-img').remove().end().html(),
                  'itinerary': itinerary,
             };
             if(main_img){

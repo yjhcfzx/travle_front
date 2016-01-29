@@ -130,7 +130,15 @@ abstract class My_Controller extends CI_Controller
             $param = array('action'=>'recent');
             $resp = my_api_request($request_url , 'get', $param);
             $resp = json_decode($resp,true);
-            $this->data['recent_hot_post'] = $resp;
+            if(isset($resp['error']))
+            {
+			//$this->data['error'] = $resp['error'];
+            }
+	    else {
+	    	
+	    	$this->data['recent_hot_post'] = $resp;
+	    }
+            
             
             $route = $this->uri->segment(1);
             $method = $this->uri->segment(2);

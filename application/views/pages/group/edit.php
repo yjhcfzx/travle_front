@@ -1,4 +1,3 @@
-
 <div id="container">
   <form method="post" class="validator">
 
@@ -33,7 +32,7 @@
     <div class='itinerary' id='itinerary_<?php echo $index; ?>'>
     <h3><span class='itinerary_index'>D<?php echo $index; ?></span> <span class='itinerary_time'></span></h3>
     <?php 
-      $temp_arr = explode(',', $itinerary['did']);
+      $temp_arr = explode(',', $itinerary['destination']);
       $selected_arr = array();
       foreach($temp_arr as $dest){
           $selected_arr[(int)$dest] = 1;
@@ -62,24 +61,17 @@
 </div>
 <?php endif;?>
 </div><!--end itineary conainer-->
+<?php echo my_generate_controller(array('name'=>'itinerary_arrange','label'=>'itinerary_arrange','type'=>'textarea', 'value'=>$items['content'],));?>
 </div>
 <div class='fieldset'>
-    <?php echo my_generate_legend('post_content');?>
+    <?php echo my_generate_legend('itinerary_description');?>
   <?php echo my_generate_controller(array('name'=>'title','label'=>'title','value'=>$items['title'],'type'=>'text'));?>
-  
-   <?php echo my_generate_controller(array('name'=>'prepare_content','label'=>'prepare_content','value'=>$items['prepare_content'],'type'=>'textarea'));?>
+       <?php echo my_generate_controller(array('name'=>'itinerary_description','label'=>'itinerary_description','value'=>$items['description'],'type'=>'textarea'));?>
     <div class="breaker40"></div>
-     <?php echo my_generate_controller(array('name'=>'travle_tip','label'=>'travle_tip','value'=>$items['travle_tip'],'type'=>'textarea'));?>
-    <div class="breaker40"></div>
-   <?php echo my_generate_controller(array('name'=>'post_content','label'=>'post_content','value'=>$items['content'],'type'=>'textarea'));?>
-   
-</div>
-<div class='fieldset'>
-    <?php echo my_generate_legend('other');?>
- <?php 
+<?php 
         $options = array();
-        $selected_val = array();
-        if(!isset($event['error'])){ foreach($event as $item){
+         $selected_val = array();
+       if(!isset($event['error'])){ foreach($event as $item){
             $options[$item['id']] = $item['name'];
             }}
         if(isset($items['special_events'])){ foreach($items['special_events'] as $item){
@@ -88,11 +80,12 @@
       echo my_generate_controller(array('name'=>'special_event','label'=>'special_event','type'=>'select','value'=>$selected_val,
           'attribute'=>array('multiple'=>TRUE,
               'placeholder'=>'choose_or_create',
-               'required'=>'not_required',
+              'required'=>'not_required',
               'options'=>$options
               )));?>
-<!--   <textarea cols="80" id="content" name="content" rows="10">place holder 1</textarea>-->
+   
 </div>
+
    <div class="form-group">
         <!-- Button -->
         <div class="controls">
@@ -176,14 +169,13 @@
             var request = {
                // 'content': editor.getData(),
                'id':<?php echo $items['id']; ?>,
-               'content': $('#post_content').html(),
+               'content': $('#itinerary_arrange').find('.set-main-img').remove().end().html(),
                  'special_event': $('#special_event').val() ? $('#special_event').val().join(',') : '',
                  'destination': destination_arr ? destination_arr.join(',') : '',
                   'travle_start_time': $('#travle_start_time').val(),
                   'travle_end_time': $('#travle_end_time').val(),
                   'title': $('#title').val(),
-                  'prepare_content':$('#prepare_content').html(),
-                   'travle_tip':$('#travle_tip').html(),
+                  'description':$('#itinerary_description').find('.set-main-img').remove().end().html(),
                  'itinerary': itinerary,
             };
             if(main_img){

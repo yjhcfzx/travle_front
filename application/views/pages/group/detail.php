@@ -38,20 +38,15 @@
 
     </div>
     <div class='fieldset'>
-    <?php echo my_generate_legend('post_content');?>
+    <?php echo my_generate_legend('itinerary_description');?>
     </div>
     <div class="you_section">
-    <label class="control-label"> <?php echo $this->lang->line('prepare_content'); ?>   </label>
+    <label class="control-label"> <?php echo $this->lang->line('itinerary_description'); ?>   </label>
      <div class="you-p row">
-         <?php  echo $items['prepare_content']; ?>
+         <?php  echo $items['description']; ?>
      </div>
     </div>
-    <div class="you_section">
-    <label class="control-label"> <?php echo $this->lang->line('travle_tip'); ?>   </label>
-     <div class="you-p row">
-         <?php  echo $items['travle_tip']; ?>
-     </div>
-    </div>
+   
      <div class="you_section">
     <label class="control-label"> <?php echo $this->lang->line('post_content'); ?>   </label>
      <div class="you-p row">
