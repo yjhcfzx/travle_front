@@ -44,7 +44,6 @@ function setMainImage(ele){
     var $ele = $(ele);
     var img = $ele.parent('.inserted-img-container').find('img').attr('src');
     var main_img_url = img.substring(img.lastIndexOf('/') + 1);
-    alert(main_img_url);
     if (typeof ajaxSetMainImage == 'function') { 
          ajaxSetMainImage(main_img_url); 
     }
