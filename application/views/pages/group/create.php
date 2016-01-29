@@ -37,24 +37,18 @@
               )));?>
 
 </div>
-</div><!--end itineary conainer-->
+</div><!--end itinerary conainer-->
+    
+       <?php echo my_generate_controller(array('name'=>'itinerary_arrange','label'=>'itinerary_arrange','type'=>'textarea'));?>
     </div><!--end field section-->
 </div>
+
 <div class='fieldset'>
-    <?php echo my_generate_legend('post_content');?>
+    <?php echo my_generate_legend('itinerary_description');?>
     <div class="field-section">
   <?php echo my_generate_controller(array('name'=>'title','label'=>'title','type'=>'text'));?>
-  
-   <?php echo my_generate_controller(array('name'=>'prepare_content','label'=>'prepare_content','type'=>'textarea'));?>
-    <div class="breaker40"></div>
-     <?php echo my_generate_controller(array('name'=>'travle_tip','label'=>'travle_tip','type'=>'textarea'));?>
-    <div class="breaker40"></div>
-   <?php echo my_generate_controller(array('name'=>'post_content','label'=>'post_content','type'=>'textarea'));?>
-    </div>
-</div>
-<div class='fieldset'>
-    <?php echo my_generate_legend('other');?>
-    <div class="field-section">
+     <?php echo my_generate_controller(array('name'=>'itinerary_description','label'=>'itinerary_description','type'=>'textarea'));?>
+     <div class="breaker40"></div>
  <?php 
         $options = array();
         if(!isset($event['error'])){ foreach($event as $item){
@@ -69,6 +63,8 @@
 <!--   <textarea cols="80" id="content" name="content" rows="10">place holder 1</textarea>-->
     </div>
 </div>
+
+
    <div class="form-group">
         <!-- Button -->
         <div class="controls">
@@ -155,14 +151,13 @@
             destination_arr = arrayUnique(destination_arr);
             var request = {
                // 'content': editor.getData(),
-               'content': $('#post_content').html(),
+               'content': $('#itinerary_arrange').find('.set-main-img').remove().end().html(),
                  'special_event': $('#special_event').val() ? $('#special_event').val().join(',') : '',
                  'destination': destination_arr ? destination_arr.join(',') : '',
                   'travle_start_time': $('#travle_start_time').val(),
                   'travle_end_time': $('#travle_end_time').val(),
                   'title': $('#title').val(),
-                  'prepare_content':$('#prepare_content').html(),
-                   'travle_tip':$('#travle_tip').html(),
+                  'description':$('#itinerary_description').find('.set-main-img').remove().end().html(),
                  'itinerary': itinerary,
             };
             if(main_img){
@@ -182,7 +177,7 @@
 				return false;
                             }
                             else{
-                                 window.location.href = "<?php echo $this->config->item( 'base_url');?>post";
+                                 window.location.href = "<?php echo $this->config->item( 'base_url'), $router;?>";
                             }
 			
 			});

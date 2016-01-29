@@ -28,11 +28,11 @@
                 $img = $doc->getElementsByTagName('img')->item(0);
                 if($img){$imgOfText = $img->getAttribute('src');}}?>
 	       <div class="list-item panel panel-warning">
-	            <div class="panel-heading"><a href="<?php echo  $this->config->item('base_url');?>post/detail/<?php echo $product['id']; ?>">
+	            <div class="panel-heading"><a href="<?php echo  $this->config->item('base_url'), $router;?>/detail/<?php echo $product['id']; ?>">
                         <?php echo $product['title']?></a>
                         <span class="you-glyphicon glyphicon glyphicon-time"></span>
 			<?php echo $product['travle_start_time'] , ' - ' , $product['travle_end_time'];?></div>
-	       		<div class="panel-body" onclick='javascript:window.location.href = "<?php echo  $this->config->item('base_url');?>post/detail/<?php echo $product['id']; ?>";'>
+	       		<div class="panel-body" onclick='javascript:window.location.href = "<?php echo  $this->config->item('base_url'), $router;?>/detail/<?php echo $product['id']; ?>";'>
 				    <div class = 'row'>
 				    	<div class="col-lg-3 col-md-4 col-sm-4 col-xs-5">
 
@@ -50,7 +50,7 @@
                                                         }  ?>
 					    	  </div>
                                             <div class='read_more visible-sm visible-xs'>
-                                                <a href="<?php echo  $this->config->item('base_url');?>post/detail/<?php echo $product['id']; ?>">
+                                                <a href="<?php echo  $this->config->item('base_url'), $router ;?>/detail/<?php echo $product['id']; ?>">
                                                     <button  type="button" class="btn btn-primary btn-sm">
                                                         <i style='margin-left:3px;' class="you-glyphicon glyphicon glyphicon-hand-right"></i> 
                                                       <?php echo $this->lang->line('read_more');?></button>
