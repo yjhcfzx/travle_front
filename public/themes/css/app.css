@@ -161,6 +161,9 @@ a, a:hover{
 .you-row{
     margin:10px 0px;
 }
+.you-p  div{
+    line-height: 1.5em;
+}
 .you-p{
     padding:15px;
     border:1px solid #eee;
