@@ -29,6 +29,11 @@
         if(!isset($destination['error'])){ foreach($destination as $item){
             $options[$item['id']] = $item['name'];
             }}
+            
+             $host_options = array();
+        if(!isset($hosts['error'])){ foreach($hosts as $item){
+            $host_options[$item['id']] = $item['name'];
+            }}
     foreach($items['itinerary'] as $key=>$itinerary): $index = $key + 1;?>
     <div class='itinerary' id='itinerary_<?php echo $index; ?>'>
     <h3><span class='itinerary_index'>D<?php echo $index; ?></span> <span class='itinerary_time'></span></h3>
@@ -40,8 +45,23 @@
       }
       echo my_generate_controller(array('name'=>'destination_' . $index,'label'=>'destination','type'=>'select','value'=>$selected_arr,
           'attribute'=>array('multiple'=>TRUE,
+               'class'=>'destination',
               'placeholder'=>'choose_or_create',
               'options'=>$options
+              )));?>
+    
+       <?php 
+      $temp_arr = explode(',', $itinerary['host']);
+      $selected_arr = array();
+      foreach($temp_arr as $host){
+          $selected_arr[(int)$host] = 1;
+      }
+      echo my_generate_controller(array('name'=>'host_' . $index,'label'=>'host','type'=>'select','value'=>$selected_arr,
+          'attribute'=>array('multiple'=>TRUE,
+               'class'=>'host',
+              'required'=>'not-required',
+              'placeholder'=>'choose_or_create',
+              'options'=>$host_options
               )));?>
 
 </div>
@@ -164,20 +184,30 @@
                 return false;
             }
             var destination_arr = [];
+            var host_arr = [];
             var itinerary = [];
             $('#itinerary_container .itinerary').each(function(item){
-                var values = $(this).find('select.form-control').val(); 
-                itinerary.push( values.join(','));
-                destination_arr = destination_arr.concat(values);
+                var dest_values = $(this).find('select.form-control.destination').val(); 
+                var host_values = $(this).find('select.form-control.host').val(); 
+                 if(!host_values){
+                     host_values = [];
+                 }
+                    //itineray item dest,dest||host,host
+                    itinerary.push( dest_values.join(',') + '||' + host_values.join(','));
+                    destination_arr = destination_arr.concat(dest_values);
+                    host_arr = host_arr.concat(host_values);
+
                
             });
             itinerary = itinerary.join('#');
             destination_arr = arrayUnique(destination_arr);
+            host_arr = arrayUnique(host_arr);
             var request = {
                // 'content': editor.getData(),
                'id':<?php echo $items['id']; ?>,
                'content': $('#post_content').find('.set-main-img').remove().end().html(),
                  'special_event': $('#special_event').val() ? $('#special_event').val().join(',') : '',
+                  'host': host_arr ? host_arr.join(',') : '',
                  'destination': destination_arr ? destination_arr.join(',') : '',
                   'travle_start_time': $('#travle_start_time').val(),
                   'travle_end_time': $('#travle_end_time').val(),

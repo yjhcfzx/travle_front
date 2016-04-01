@@ -33,7 +33,20 @@
       echo my_generate_controller(array('name'=>'destination_1','label'=>'destination','type'=>'select',
           'attribute'=>array('multiple'=>TRUE,
               'placeholder'=>'choose_or_create',
-              'options'=>$options
+              'options'=>$options,
+              'class'=>'destination'
+              )));?>
+     <?php 
+        $options = array();
+        if(!isset($hosts['error'])){ foreach($hosts as $item){
+            $options[$item['id']] = $item['name'];
+            }}
+      echo my_generate_controller(array('name'=>'host_1','label'=>'host','type'=>'select',
+          'attribute'=>array('multiple'=>TRUE,
+              'required'=>'not-required',
+              'placeholder'=>'choose_or_create',
+              'options'=>$options,
+              'class'=>'host'
               )));?>
 
 </div>
@@ -142,22 +155,31 @@
             }
             
             var destination_arr = [];
+            var host_arr = [];
             var itinerary = [];
             $('#itinerary_container .itinerary').each(function(item){
-                var values = $(this).find('select.form-control').val(); 
-                if(values){
-                    itinerary.push( values.join(','));
-                    destination_arr = destination_arr.concat(values);
+                var dest_values = $(this).find('select.form-control.destination').val(); 
+                 var host_values = $(this).find('select.form-control.host').val(); 
+                 if(!host_values){
+                     host_values = [];
+                 }
+                if(dest_values){
+                    //itineray item dest,dest||host,host
+                    itinerary.push( dest_values.join(',') + '||' + host_values.join(','));
+                    destination_arr = destination_arr.concat(dest_values);
+                    host_arr = host_arr.concat(host_values);
                 }
                
             });
+            //itineray items  item#item
             itinerary = itinerary.join('#');
             destination_arr = arrayUnique(destination_arr);
-             
+            host_arr = arrayUnique(host_arr);
             var request = {
                // 'content': editor.getData(),
                'content': $('#post_content').find('.set-main-img').remove().end().html(),
                  'special_event': $('#special_event').val() ? $('#special_event').val().join(',') : '',
+                  'host': host_arr ? host_arr.join(',') : '',
                  'destination': destination_arr ? destination_arr.join(',') : '',
                   'travle_start_time': $('#travle_start_time').val(),
                   'travle_end_time': $('#travle_end_time').val(),
@@ -169,6 +191,7 @@
             if(main_img){
                 request['main_image'] = main_img;
             }
+            console.log(request);
             $.ajax({
 		async:false,
 		url: "<?php echo $this->config->item('base_url');?>ajax",
@@ -183,6 +206,7 @@
 				return false;
                             }
                             else{
+                                console.log(data);
                                  window.location.href = "<?php echo $this->config->item( 'base_url');?>post";
                             }
 			

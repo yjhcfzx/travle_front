@@ -53,6 +53,9 @@ class post extends My_Controller {
         {
             $destination = $this->getDestinations();
             $this->data['destination'] =    $destination;
+            
+            $hosts = $this->getHosts();
+            $this->data['hosts'] =    $hosts;
 
             $event = $this->getEvents();
             $this->data['event'] =    $event;
@@ -73,6 +76,8 @@ class post extends My_Controller {
                 $request_url =  'comment/detail/format/json';
                 $resp = my_api_request($request_url ,  'post', $param = array('content'=>$comment_content,'post_id'=>$id));
             }
+            
+            //get detail
             $request_url = $this->data['router'] . '/detail/format/json';
             $resp = my_api_request($request_url ,  'get', $param = array('id'=>$id));
             $resp = json_decode($resp,true);
@@ -124,6 +129,8 @@ class post extends My_Controller {
                           $this->data['destination'] =    $destination;
                           $event = $this->getEvents();
                           $this->data['event'] =    $event;
+                          $hosts = $this->getHosts();
+                          $this->data['hosts'] =    $hosts;
                         
                         $this->load->view('pages/' .   $this->data ['router'] . '/edit', $this->data);
                     }

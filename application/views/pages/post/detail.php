@@ -32,7 +32,14 @@
      <?php echo my_generate_legend('itinerary');?>
         <?php  if(isset($items['itinerary'])){
          foreach($items['itinerary'] as $it){
-             echo '<div class="you-row"><span style="position:relative;top:2px;" class="glyphicon glyphicon-calendar"></span> ' , $it['travle_date'] , ' ' , $it['dname'] , '</div>';
+             $dnames = explode(',', $it['dname']);
+             $dnames = array_unique(array_map('trim',$dnames));
+             $dnames = implode(',',$dnames);
+             $hnames = explode(',', $it['hname']);
+             $hnames = array_unique(array_map('trim',$hnames));
+             $hnames = implode(',',$hnames);
+             echo '<div class="you-row"><span style="position:relative;top:2px;" class="glyphicon glyphicon-calendar"></span> ' , $it['travle_date'] , ' '
+                     , $dnames , '<br><span style="position:relative;top:2px;" class="glyphicon glyphicon-home"></span> ' , $hnames , '</div>';
          }
      } ?>
 

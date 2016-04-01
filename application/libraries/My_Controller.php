@@ -61,6 +61,13 @@ abstract class My_Controller extends CI_Controller
          return $destination;
     }
     
+    protected function getHosts(){
+         $api_url = 'common/host/format/json';
+         $data = my_api_request($api_url , $method = 'get', $param = array());
+         $data = json_decode($data,true);
+         return $data;
+    }
+    
     protected function getEvents(){
          $event_url = 'common/event/format/json';
          $event = my_api_request($event_url , $method = 'get', $param = array());
