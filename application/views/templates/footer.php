@@ -28,6 +28,14 @@
                                 minlength: 3,
                                 maxlength: 15,
                             },
+                             email: {
+                                email: true
+                            },
+                            phone:{
+                                 phoneNumber: true,
+                                  minlength: 5,
+                                 maxlength: 15,
+                            },
                             name: {
                                 minlength: 3,
                                 maxlength: 15,
@@ -65,8 +73,14 @@
 $(document).ready(function(){
     if( $('form.validator').length){
      $.validator.setDefaults({ ignore: ":hidden:not(.chzn-select)" }) ;
+     $.validator.addMethod("phoneNumber", function(phone_number, element) {
+    phone_number = phone_number.replace(/\s+/g, "");
+    return this.optional(element) || 
+    phone_number.match(/^[0-9\-\(\)\s]+$/);
+}, "<?php echo $this->lang->line('valid_phone');?>");
      $.validator.messages.required = "<?php echo $this->lang->line('not_empty');?>";
      $.validator.messages.minlength = $.validator.format("<?php echo $this->lang->line('min_length');?>{0}");
+      $.validator.messages.email = $.validator.format("<?php echo $this->lang->line('valid_email');?>");
      $.validator.messages.maxlength = $.validator.format("<?php echo $this->lang->line('max_length');?>{0}");
     
      $('form.validator').validate(validator_settings);

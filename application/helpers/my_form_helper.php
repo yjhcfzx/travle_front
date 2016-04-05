@@ -29,7 +29,7 @@ if (!function_exists('my_generate_controller')) {
         if ($type == 'textarea') {
             $html = "<label class='control-label'> " . $CI->lang->line($label) . "   </label>
 <div class='operations gradient'>
-    <button id='{$name}_insert_picture_top' type='button' class='btn btn-xs btn-default  image_trigger' aria-label='Left Align'>
+    <button id='{$name}_insert_picture_top' type='button'  unselectable='on' class='btn btn-xs btn-default  image_trigger' aria-label='Left Align'>
         <span class='glyphicon glyphicon-picture'> " . $CI->lang->line('insert_picture') . "
     </button>
 </div>
@@ -38,7 +38,7 @@ if (!function_exists('my_generate_controller')) {
 <div id='{$name}' contenteditable='true' class='textarea'>{$value}</div>
 
 <div class='operations gradient'>
-    <button id='{$name}_insert_picture_bottom' type='button' class='btn btn-xs btn-default  image_trigger' aria-label='Left Align'>
+    <button id='{$name}_insert_picture_bottom' type='button'   unselectable='on' class='btn btn-xs btn-default  image_trigger' aria-label='Left Align'>
         <span class='glyphicon glyphicon-picture'> " . $CI->lang->line('insert_picture') . "
     </button>
 </div>";
@@ -99,7 +99,7 @@ if (!function_exists('my_generate_legend')) {
         $CI = & get_instance();
         $html = '';
         $html .= "<div class='legend  orange' id='legend_{$name}'>
-        <button  type='button' class='btn btn-default my-orange' aria-label='Left Align'>
+        <button  type='button'  class='btn btn-default my-orange' aria-label='Left Align'>
                 <span class='glyphicon glyphicon-bookmark'> " . $CI->lang->line($name) .
                 " </button>
      </div>";
