@@ -171,8 +171,15 @@ a, a:hover{
 .inserted-img{
     max-width:100%;max-height:600px
 }
+.textarea
+{
+     font-family:  Arial, 'Lucida Grande'
+}
 .textarea .inserted-img-container{
     position:relative;
+}
+div.textarea div{
+    line-height:1.5em;
 }
 .set-main-img{
     display:none;
